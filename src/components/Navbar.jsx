@@ -54,7 +54,7 @@ const Navbar = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`relative text-sm font-medium transition-colors duration-200 ${
+                className={`relative text-lg font-medium transition-colors duration-200 ${
                   location.pathname === item.path
                     ? "text-neonPurple"
                     : "text-gray-300 hover:text-white"
@@ -83,7 +83,7 @@ const Navbar = () => {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="relative px-6 py-2 bg-gradient-to-r from-neonPurple to-neonTeal rounded-full text-white text-sm font-semibold overflow-hidden group"
+                className="relative px-6 py-2 bg-gradient-to-r from-neonPurple to-neonTeal rounded-full text-white text-lg font-semibold overflow-hidden group"
               >
                 <span className="relative z-10">Let's Create</span>
                 
