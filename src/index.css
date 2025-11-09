@@ -1,0 +1,200 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@theme {
+  --color-background: #0B0C10;
+  --color-neon-purple: #A259FF;
+  --color-neon-teal: #00F5D4;
+  --color-dark-card: #1A1A2E;
+  --color-glow-purple: rgba(162, 89, 255, 0.3);
+  --color-glow-teal: rgba(0, 245, 212, 0.3);
+  
+  --font-family-poppins: 'Poppins', sans-serif;
+  --font-family-inter: 'Inter', sans-serif;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: var(--font-family-poppins);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-background);
+    color: white;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--color-glow-purple);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--color-neon-purple), var(--color-neon-teal));
+    border-radius: 3px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, var(--color-neon-teal), var(--color-neon-purple));
+  }
+  
+  /* Firefox scrollbar */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-neon-purple) var(--color-background);
+  }
+}
+
+@layer components {
+  .glassmorphism {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+  
+  .gradient-text {
+    color: transparent;
+    background: linear-gradient(to right, var(--color-neon-purple), var(--color-neon-teal));
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+  
+  .btn-glow {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-glow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+  }
+  
+  .btn-glow:hover::before {
+    left: 100%;
+  }
+  
+  /* Button styles */
+  .btn-primary {
+    background: linear-gradient(135deg, var(--color-neon-purple), var(--color-neon-teal));
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(162, 89, 255, 0.4);
+  }
+  
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-neon-teal);
+    padding: 0.75rem 2rem;
+    border: 2px solid var(--color-neon-teal);
+    border-radius: 9999px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-secondary:hover {
+    background: var(--color-neon-teal);
+    color: var(--color-background);
+    transform: translateY(-2px);
+  }
+
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+}
+
+/* Neon Glow Cursor Effect - Only on Desktop */
+@media (min-width: 769px) and (pointer: fine) {
+  * {
+    cursor: url("data:image/svg+xml,%3Csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='16' cy='16' r='10' fill='%23A259FF' fill-opacity='0.3'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%2300F5D4'/%3E%3C/svg%3E") 16 16, auto !important;
+  }
+
+  /* Pointer cursor for interactive elements */
+  a, button, input[type="submit"], select, [role="button"], 
+  .cursor-pointer {
+    cursor: url("data:image/svg+xml,%3Csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23A259FF' fill-opacity='0.5'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%2300F5D4'/%3E%3C/svg%3E") 16 16, pointer !important;
+  }
+
+  /* Text input cursor */
+  input[type="text"], 
+  input[type="email"], 
+  input[type="password"],
+  textarea {
+    cursor: url("data:image/svg+xml,%3Csvg width='24' height='32' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='12' y1='4' x2='12' y2='28' stroke='%2300F5D4' stroke-width='2'/%3E%3C/svg%3E") 12 16, text !important;
+  }
+}
+
+/* Keep default cursor on mobile and tablets */
+@media (max-width: 768px), (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+  
+  a, button {
+    cursor: pointer !important;
+  }
+  
+  input, textarea {
+    cursor: text !important;
+  }
+}
+
+/* Selection styling */
+::selection {
+  background: var(--color-glow-purple);
+  color: white;
+}
+
+::-moz-selection {
+  background: var(--color-glow-purple);
+  color: white;
+}
+
+/* Focus styles for accessibility */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid var(--color-neon-purple);
+  outline-offset: 2px;
+}
