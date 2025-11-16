@@ -212,15 +212,15 @@ const Home = () => {
         </div>
 
         {/* Main Content - INCREASED SPACING */}
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto px-8 lg:px-12">
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center max-w-7xl mx-auto px-8 lg:px-12">
           {/* Left Side - Content */}
-          <motion.div variants={itemVariants} className="space-y-10 lg:pr-10">
+          <motion.div variants={itemVariants} className="space-y-8 lg:pr-10">
             {/* Badge - LARGER */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="inline-flex items-center gap-3 glassmorphism px-6 py-3 rounded-full border border-neonPurple/30"
+              className="inline-flex items-center glassmorphism px-6 py-3 rounded-full border border-neonPurple/30"
             >
               <Sparkles size={20} className="text-neonTeal" />
               <span className="text-base text-gray-300">Welcome to Kreovix</span>
@@ -228,7 +228,7 @@ const Home = () => {
 
             {/* Tagline - LARGER WITH MORE SPACE */}
             <motion.div variants={itemVariants} className="space-y-8">
-              <motion.h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-poppins leading-[1.1] tracking-tight">
+              <motion.h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold font-poppins leading-[1.1] tracking-tight">
                 {["Create.", "Captivate.", "Convert."].map((word, wordIndex) => (
                   <motion.span
                     key={wordIndex}
@@ -322,7 +322,7 @@ const Home = () => {
                   boxShadow: '0 20px 40px rgba(162, 89, 255, 0.4)'
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative px-10 py-5 bg-gradient-to-r from-neonPurple to-neonTeal rounded-full font-semibold text-lg overflow-hidden shadow-lg"
+                className="group relative px-7 py-5 border-[0.5px] border-grey-50 outline-none bg-gradient-to-r from-neonPurple to-neonTeal rounded-full font-semibold text-[1.1rem] overflow-hidden shadow-lg"
               >
                 <span className="relative z-10 flex items-center gap-3">
                   Start Project
@@ -347,7 +347,7 @@ const Home = () => {
               <motion.button
                 whileHover={{ scale: 1.04, y: -2 }}
                 whileTap={{ scale: 0.96 }}
-                className="group px-10 py-5 glassmorphism border-2 border-neonTeal/50 rounded-full font-semibold text-lg relative overflow-hidden"
+                className="group px-6 glassmorphism border-2 border-neonTeal/50 rounded-full font-semibold text-[1.1rem] relative overflow-hidden"
               >
                 <span className="relative z-10 flex items-center gap-3 text-neonTeal group-hover:text-white transition-colors">
                   <motion.div
