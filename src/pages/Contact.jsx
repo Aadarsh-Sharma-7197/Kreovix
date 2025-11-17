@@ -279,14 +279,14 @@ ${formData.name}`;
       {/* Hero Section */}
       <motion.section
         ref={heroRef}
-        className="pt-32 pb-20 relative"
+        className="pt-25 pb-20 relative"
       >
         <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="mb-8"
+            className="mb-2"
           >
             <motion.div
               className="inline-flex items-center gap-3 glassmorphism px-6 py-3 rounded-full border border-neonPurple/30 mb-8"

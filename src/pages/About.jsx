@@ -184,9 +184,9 @@ const About = ({ setCursorVariant }) => {
       <motion.section
         ref={heroRef}
         style={{ y: heroY, scale: heroScale }}
-        className="min-h-screen flex items-center justify-center relative pt-25"
+        className="min-h-screen flex items-center justify-center relative pt-5"
       >
-        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
+        <div className="max-w-7xl pt-15 mx-auto px-6 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isHeroInView ? { opacity: 1, scale: 1 } : {}}
@@ -217,15 +217,15 @@ const About = ({ setCursorVariant }) => {
           >
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-poppins leading-tight">
               <motion.span
-                className="block overflow-hidden"
+                className=" overflow-hidden"
                 initial={{ y: "100%" }}
                 animate={isHeroInView ? { y: "0%" } : {}}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                <span className="gradient-text">Creating</span>
+                <span className="gradient-text mr-5">Creating</span>
               </motion.span>
               <motion.span
-                className="block overflow-hidden"
+                className=" overflow-hidden"
                 initial={{ y: "100%" }}
                 animate={isHeroInView ? { y: "0%" } : {}}
                 transition={{ duration: 0.8, delay: 0.8 }}
@@ -233,12 +233,12 @@ const About = ({ setCursorVariant }) => {
                 <span className="gradient-text">Magic</span>
               </motion.span>
               <motion.span
-                className="block overflow-hidden"
+                className=" overflow-hidden"
                 initial={{ y: "100%" }}
                 animate={isHeroInView ? { y: "0%" } : {}}
                 transition={{ duration: 0.8, delay: 1.0 }}
               >
-                <span className="text-white">Together</span>
+                <span className="block text-white">Together</span>
               </motion.span>
             </h1>
 
@@ -246,7 +246,7 @@ const About = ({ setCursorVariant }) => {
               initial={{ opacity: 0, y: 30 }}
               animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 1.4 }}
-              className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+              className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto pt-6 leading-relaxed"
             >
               We are a passionate team of creators, storytellers, and innovators dedicated to 
               transforming your <span className="gradient-text font-semibold">wildest ideas</span> into 
@@ -286,7 +286,7 @@ const About = ({ setCursorVariant }) => {
       {/* Our Story Section */}
       <motion.section
         ref={storyRef}
-        className="py-20 relative"
+        className="py relative"
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">

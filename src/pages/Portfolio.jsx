@@ -581,7 +581,7 @@ const Portfolio = () => {
            </Link>
             
            <Link to="/services"> 
-            <motion.button
+            <motion.button  
               className="px-8 py-4 glassmorphism border border-white/30 rounded-full font-medium text-lg text-white hover:border-neonTeal/50 transition-colors"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}

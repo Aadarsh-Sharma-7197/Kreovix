@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { 
   Camera, 
   Video, 
@@ -18,7 +19,7 @@ import {
   Clock,
   TrendingUp,
   MousePointer,
-  Sparkles
+  Sparkles,
 } from 'lucide-react';
 
 const services = [
@@ -564,14 +565,7 @@ const Services = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn-primary btn-glow px-8 py-4 text-lg"
-              >
-                Start Your Project
-              </motion.button>
-              
+              <Link to="/contact" >              
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -579,6 +573,7 @@ const Services = () => {
               >
                 Schedule Consultation
               </motion.button>
+            </Link>
             </div>
           </div>
         </motion.div>
