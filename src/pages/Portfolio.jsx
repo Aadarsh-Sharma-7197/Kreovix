@@ -28,6 +28,7 @@ import {
   Facebook,
   Twitter
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -569,21 +570,25 @@ const Portfolio = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Link to="/contact">
             <motion.button
-              className="px-12 py-6 bg-gradient-to-r from-neonPurple to-neonTeal rounded-2xl font-medium text-lg shadow-2xl"
+              className="px-8 py-4 glassmorphism border border-white/30 bg-gradient-to-r from-neonPurple to-neonTeal rounded-full font-medium text-lg shadow-2xl"
               whileHover={{ scale: 1.05, y: -3 }}
               whileTap={{ scale: 0.95 }}
-            >
+              >
               Start Your Project
             </motion.button>
+           </Link>
             
+           <Link to="/services"> 
             <motion.button
-              className="px-12 py-6 glassmorphism border border-white/30 rounded-2xl font-medium text-lg text-white hover:border-neonTeal/50 transition-colors"
+              className="px-8 py-4 glassmorphism border border-white/30 rounded-full font-medium text-lg text-white hover:border-neonTeal/50 transition-colors"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
               View All Services
             </motion.button>
+          </Link>
           </div>
         </motion.div>
       </div>
