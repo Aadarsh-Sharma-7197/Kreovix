@@ -19,88 +19,103 @@ const Navbar = () => {
   useEffect(() => setIsMobileMenuOpen(false), [location]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
-      {/* Navbar container - UPDATED COLORS */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'bg-background/90 backdrop-blur-xl border-b border-neonPurple/30 shadow-lg shadow-neonPurple/10' 
-          : 'bg-background/80 backdrop-blur-md border-b border-white/10'
-      }`}>
-        <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-3">
-          {/* Left - Logo */}
-          <Link to="/" className="flex items-center gap-2">
+      <motion.nav
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className={`
+          fixed top-0 left-0 right-0 z-50 transition-all duration-500
+          ${isScrolled
+            ? "bg-background/80 backdrop-blur-xl border-b border-white/10 shadow-[0_0_25px_rgba(162,89,255,0.25)]"
+            : "bg-background/20 backdrop-blur-lg border-b border-white/5"
+          }
+        `}
+      >
+        <div className="max-w-7xl mx-auto px-6 h-[70px] flex items-center justify-between">
+
+          {/* LOGO */}
+          <Link to="/" className="flex items-center gap-2 outline-none focus:outline-none">
             <motion.img
-              whileHover={{ scale: 1.05 }}
               src="/logo.png"
               alt="Kreovix Logo"
-              className="h-[40px] w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+              className="h-[40px] w-auto opacity-90 hover:opacity-100 transition"
               style={{
-                filter: 'drop-shadow(0 0 10px rgba(162, 89, 255, 0.3))'
+                filter: "drop-shadow(0 0 12px rgba(162,89,255,0.35))"
               }}
+              whileHover={{ scale: 1.06 }}
             />
           </Link>
 
-          {/* Center - Navigation Links */}
-          <div className="hidden md:flex items-center space-x-6">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`relative text-lg font-medium transition-colors duration-200 ${
-                  location.pathname === item.path
-                    ? "text-neonPurple"
-                    : "text-gray-300 hover:text-white"
-                }`}
-              >
-                {item.name}
-                {location.pathname === item.path && (
-                  <motion.div
-                    layoutId="activeNav"
-                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-gradient-to-r from-neonPurple to-neonTeal rounded-full"
-                    transition={{
-                      type: "spring",
-                      stiffness: 250,
-                      damping: 22,
-                    }}
-                  />
-                )}
-              </Link>
-            ))}
+          {/* DESKTOP NAV */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navItems.map((item) => {
+              const active = location.pathname === item.path;
+
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className="relative group px-1 outline-none focus:outline-none"
+                >
+                  <span
+                    className={`text-[1.05rem] font-medium transition-colors inline-block ${
+                      active ? "text-neonPurple" : "text-gray-300 group-hover:text-white"
+                    }`}
+                  >
+                    {item.name}
+                  </span>
+
+                  {active && (
+                    <motion.div
+                      layoutId="nav-underline"
+                      className="absolute left-0 right-0 -bottom-[6px] h-[3px] rounded-full 
+                      bg-gradient-to-r from-neonPurple to-neonTeal"
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 22,
+                      }}
+                    />
+                  )}
+                </Link>
+              );
+            })}
           </div>
 
-          {/* Right - CTA - UPDATED BUTTON */}
+          {/* CTA BUTTON */}
           <div className="hidden md:block">
             <Link to="/contact">
               <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
+                whileHover={{ scale: 1.07, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="relative px-6 py-2 bg-gradient-to-r from-neonPurple to-neonTeal rounded-full text-white text-lg font-semibold overflow-hidden group"
+                className="px-6 py-2 rounded-full bg-gradient-to-r from-neonPurple to-neonTeal 
+                font-semibold text-white shadow-lg shadow-neonPurple/20 relative overflow-hidden outline-none focus:outline-none"
               >
                 <span className="relative z-10">Let's Create</span>
-                
-                {/* Shimmer effect */}
+
+                {/* SHIMMER */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full"
-                  animate={{ x: ['-200%', '200%'] }}
-                  transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent 
+                  translate-x-[-100%]"
+                  animate={{ x: ["-100%", "300%"] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
                 />
               </motion.button>
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* MOBILE MENU BUTTON */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg glassmorphism border border-white/20 text-white"
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl 
+            bg-white/5 backdrop-blur-lg border border-white/20 text-white outline-none focus:outline-none"
           >
             <AnimatePresence mode="wait">
               {isMobileMenuOpen ? (
@@ -111,7 +126,7 @@ const Navbar = () => {
                   exit={{ rotate: 90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <X size={18} />
+                  <X size={20} />
                 </motion.div>
               ) : (
                 <motion.div
@@ -121,14 +136,14 @@ const Navbar = () => {
                   exit={{ rotate: -90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Menu size={18} />
+                  <Menu size={20} />
                 </motion.div>
               )}
             </AnimatePresence>
           </button>
         </div>
 
-        {/* Mobile Dropdown - UPDATED COLORS */}
+        {/* MOBILE MENU */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
@@ -136,41 +151,41 @@ const Navbar = () => {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden overflow-hidden bg-background/95 backdrop-blur-xl border-t border-white/10"
+              className="md:hidden bg-background/95 backdrop-blur-xl border-t border-white/10 overflow-hidden"
             >
-              <div className="py-3 space-y-1 px-4">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={`block px-3 py-2 rounded-lg text-sm transition-all ${
-                      location.pathname === item.path
-                        ? "bg-gradient-to-r from-neonPurple/20 to-neonTeal/20 text-neonPurple border-l-2 border-neonPurple"
-                        : "text-gray-300 hover:bg-white/5 hover:text-white"
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
+              <div className="flex flex-col px-6 py-4 space-y-3">
+                {navItems.map((item) => {
+                  const active = location.pathname === item.path;
 
-                <div className="pt-2">
-                  <Link
-                    to="/contact"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="block px-6 py-2 bg-gradient-to-r from-neonPurple to-neonTeal rounded-full text-white text-center text-sm font-semibold"
-                  >
-                    Let's Create
-                  </Link>
-                </div>
+                  return (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`px-4 py-2 rounded-xl font-medium transition-all outline-none focus:outline-none ${
+                        active
+                          ? "bg-gradient-to-r from-neonPurple/25 to-neonTeal/25 text-white border-l-2 border-neonPurple"
+                          : "text-gray-300 hover:bg-white/10 hover:text-white"
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+                  );
+                })}
+
+                <Link
+                  to="/contact"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="w-full px-6 py-3 rounded-full bg-gradient-to-r from-neonPurple to-neonTeal 
+                  text-white text-center font-semibold mt-2"
+                >
+                  Let's Create
+                </Link>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
-      </nav>
-
-      {/* Spacer to prevent overlap - REDUCED */}
-      <div className="h-[60px]" />
+      </motion.nav>
     </>
   );
 };

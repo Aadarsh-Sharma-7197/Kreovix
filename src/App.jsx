@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useState, useCallback, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
 // Components
@@ -14,25 +14,36 @@ import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
 
+// Scroll to top on page change
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [pathname]);
+
+  return null;
+};
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   const handleLoadingComplete = useCallback(() => {
-    setIsLoading(false);
+    // Ensure loading screen lasts at least 800ms
+    setTimeout(() => setIsLoading(false), 800);
   }, []);
 
   return (
-    <div className="bg-background text-white overflow-hidden min-h-screen">
-      <AnimatePresence mode="wait">
-        {isLoading ? (
-          <LoadingScreen onComplete={handleLoadingComplete} />
-        ) : (
-          <Router>
-            <Navbar />
-            
-            {/* Add padding-top to prevent navbar overlap */}
-            <div className="mt-[-75px]"> {/* This adds space below navbar */}
-              <Routes>
+    <div className="bg-background text-white min-h-screen overflow-x-hidden">
+      <Router>
+        <Navbar />
+
+          <ScrollToTop />
+
+          <AnimatePresence mode="wait">
+            {isLoading ? (
+              <LoadingScreen key="loader" onComplete={handleLoadingComplete} />
+            ) : (
+              <Routes key="routes">
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/services" element={<Services />} />
@@ -40,10 +51,10 @@ function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/blog" element={<Blog />} />
               </Routes>
-            </div>
-          </Router>
-        )}
-      </AnimatePresence>
+            )}
+          </AnimatePresence>
+        
+      </Router>
     </div>
   );
 }

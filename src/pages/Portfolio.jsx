@@ -298,7 +298,7 @@ const Portfolio = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background py-20 relative">
+    <div className="min-h-screen bg-background pt-[90px] md:pt-[100px] pb-20 relative">
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neonPurple/5 rounded-full blur-3xl" />

@@ -16,6 +16,8 @@ import {
   Lightbulb,
   Coffee
 } from 'lucide-react';
+import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
 
 const About = ({ setCursorVariant }) => {
   const [activeValue, setActiveValue] = useState(0);
@@ -182,14 +184,14 @@ const About = ({ setCursorVariant }) => {
       <motion.section
         ref={heroRef}
         style={{ y: heroY, scale: heroScale }}
-        className="min-h-screen flex items-center justify-center relative pt-20"
+        className="min-h-screen flex items-center justify-center relative pt-25"
       >
         <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isHeroInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 1, delay: 0.2 }}
-            className="mb-8"
+            className=""
           >
             <motion.div
               className="inline-flex items-center gap-3 glassmorphism px-6 py-3 rounded-full border border-neonPurple/30 mb-8"
@@ -213,7 +215,7 @@ const About = ({ setCursorVariant }) => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="space-y-8"
           >
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold font-poppins leading-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-poppins leading-tight">
               <motion.span
                 className="block overflow-hidden"
                 initial={{ y: "100%" }}
@@ -284,7 +286,7 @@ const About = ({ setCursorVariant }) => {
       {/* Our Story Section */}
       <motion.section
         ref={storyRef}
-        className="py-32 relative"
+        className="py-20 relative"
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -721,30 +723,52 @@ const About = ({ setCursorVariant }) => {
               how we can bring your ideas to life.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <motion.button
-                className="px-12 py-6 bg-gradient-to-r from-neonPurple to-neonTeal rounded-2xl font-medium text-lg shadow-2xl"
-                whileHover={{ scale: 1.05, y: -3 }}
-                whileTap={{ scale: 0.95 }}
-                onMouseEnter={() => setCursorVariant && setCursorVariant('button')}
-                onMouseLeave={() => setCursorVariant && setCursorVariant('default')}
-              >
-                Start Your Project
-              </motion.button>
-              
-              <motion.button
-                className="px-12 py-6 glassmorphism border border-white/30 rounded-2xl font-medium text-lg text-white hover:border-neonTeal/50 transition-colors"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                onMouseEnter={() => setCursorVariant && setCursorVariant('button')}
-                onMouseLeave={() => setCursorVariant && setCursorVariant('default')}
-              >
-                View Our Work
-              </motion.button>
+            <div className="flex flex-col sm:flex-row gap-5 justify-center">
+              {/* Primary Button → Contact */}
+              <Link to="/contact">
+                <motion.button
+                  className="
+                    px-8 py-3 rounded-xl font-medium text-base
+                    bg-gradient-to-r from-neonPurple to-neonTeal 
+                    border border-white/20
+                    shadow-lg hover:shadow-neonPurple/30
+                    transition-all duration-300
+                    font-family-poppins
+                  "
+                  whileHover={{ scale: 1.04, y: -1 }}
+                  whileTap={{ scale: 0.97 }}
+                  onMouseEnter={() => setCursorVariant?.('button')}
+                  onMouseLeave={() => setCursorVariant?.('default')}
+                >
+                  Start Your Project
+                </motion.button>
+              </Link>
+
+              {/* Secondary Button → Portfolio */}
+              <Link to="/portfolio">
+                <motion.button
+                  className="
+                    px-8 py-3 rounded-xl font-medium text-base text-white
+                    glassmorphism 
+                    border border-white/30 
+                    hover:border-neonTeal/60 hover:text-neonTeal
+                    transition-all duration-300
+                    font-family-poppins
+                  "
+                  whileHover={{ scale: 1.03, y: -1 }}
+                  whileTap={{ scale: 0.97 }}
+                  onMouseEnter={() => setCursorVariant?.('button')}
+                  onMouseLeave={() => setCursorVariant?.('default')}
+                >
+                  View Our Work
+                </motion.button>
+              </Link>
             </div>
+
           </motion.div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };
