@@ -95,7 +95,8 @@ const Navbar = () => {
               <motion.button
                 whileHover={{ scale: 1.07, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-2 rounded-full bg-gradient-to-r from-neonPurple to-neonTeal 
+                transition={{duration:0.25}}
+                className="px-6 py-2  rounded-full glassmorphism border-2
                 font-semibold text-white shadow-lg shadow-neonPurple/20 relative overflow-hidden outline-none focus:outline-none"
               >
                 <span className="relative z-10">Let's Create</span>
