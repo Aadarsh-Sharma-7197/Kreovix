@@ -65,10 +65,10 @@ const Portfolio = () => {
       { id: 'd4', path: 'public/gd-4.png' }
     ],
     motion: [
-      { id: 'm1', path: 'public/mg-1.png' },
-      { id: 'm2', path: 'public/mg-2.png' },
-      { id: 'm3', path: 'public/mg-3.png' },
-      { id: 'm4', path: 'public/mg-4.png' }
+      { id: 'm1', path: 'public/mg-1.jpg' },
+      { id: 'm2', path: 'public/mg-2.jpg' },
+      { id: 'm3', path: 'public/mg-3.jpg' },
+      { id: 'm4', path: 'public/mg-4.jpg' }
     ],
     social: [
       { id: 'so1', path: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80' },
@@ -83,7 +83,7 @@ const Portfolio = () => {
   // Section component
   const PortfolioSection = ({ title, items, type, icon: Icon }) => {
     const isShort = type === 'shorts';
-    const isVideo = type === 'videos' || type === 'motion';
+    const isVideo = type === 'videos';
     
     return (
       <motion.section

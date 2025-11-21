@@ -2,13 +2,11 @@ import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { 
   Mail, 
-  Send, 
   Youtube, 
   Instagram, 
   Linkedin, 
   Twitter,
   MessageCircle,
-  Phone,
   Clock,
   CheckCircle,
   AlertCircle,
@@ -18,7 +16,8 @@ import {
   Shield,
   Heart,
   Copy,
-  ExternalLink
+  ExternalLink,
+  FileText
 } from 'lucide-react';
 import Footer from '../components/Footer';
 
@@ -31,7 +30,6 @@ const Contact = () => {
   });
   const [statusMessage, setStatusMessage] = useState(null);
   const [statusType, setStatusType] = useState(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const formRef = useRef(null);
   const contactRef = useRef(null);
@@ -46,31 +44,30 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const copyEmail = () => {
-    navigator.clipboard.writeText('teamkreovix@gmail.com');
-    setStatusType('success');
-    setStatusMessage('Email address copied to clipboard!');
+  const showMessage = (type, message) => {
+    setStatusType(type);
+    setStatusMessage(message);
     setTimeout(() => {
       setStatusMessage(null);
       setStatusType(null);
-    }, 3000);
+    }, type === 'error' ? 5000 : 3000);
   };
 
-  // WhatsApp message function
+  const copyEmail = () => {
+    navigator.clipboard.writeText('teamkreovix@gmail.com');
+    showMessage('success', '📧 Email copied to clipboard!');
+  };
+
+  // WhatsApp Function - CORRECTED
   const sendWhatsAppMessage = () => {
     if (!formData.name || !formData.projectType || !formData.message) {
-      setStatusType('error');
-      setStatusMessage('Please fill in all required fields before sending WhatsApp message.');
-      setTimeout(() => {
-        setStatusMessage(null);
-        setStatusType(null);
-      }, 5000);
+      showMessage('error', '⚠️ Please fill in Name, Project Type, and Message.');
       return;
     }
 
-    const whatsappMessage = `Hi Kreovix Team! 👋
+    const message = `Hi Kreovix Team! 👋
 
-*New Project Inquiry*
+🎬 *New Project Inquiry*
 
 *Name:* ${formData.name}
 *Email:* ${formData.email || 'Not provided'}
@@ -81,58 +78,38 @@ ${formData.message}
 
 Looking forward to working with you! 🚀`;
 
-    const whatsappURL = `https://wa.me/message/YOURMESSAGELINK?text=${encodeURIComponent(whatsappMessage)}`;
-    window.open(whatsappURL, '_blank');
+    const phoneNumber = '919871971874';
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
     
-    setStatusType('success');
-    setStatusMessage('WhatsApp opened! Your message is ready to send.');
-    setTimeout(() => {
-      setStatusMessage(null);
-      setStatusType(null);
-    }, 5000);
+    window.open(whatsappURL, '_blank');
+    showMessage('success', '✅ WhatsApp opened! Send your message.');
+    setFormData({ name: '', email: '', projectType: '', message: '' });
   };
 
-  // Email function
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  // Fillout Form Function
+  const openFilloutForm = () => {
+    window.open('https://forms.fillout.com/t/7hHU67r9UCus', '_blank');
+    showMessage('success', '📝 Form opened in new tab!');
+  };
 
-    // Create email content
-    const subject = `New Project Inquiry: ${formData.projectType}`;
+  // Email Function
+  const sendEmail = () => {
+    const subject = `New Project: ${formData.projectType || 'Inquiry'}`;
     const body = `Hello Kreovix Team,
-
-I'm interested in working with you on a project.
 
 Name: ${formData.name}
 Email: ${formData.email}
 Project Type: ${formData.projectType}
 
-Project Details:
+Details:
 ${formData.message}
-
-Please get back to me at your earliest convenience.
 
 Best regards,
 ${formData.name}`;
 
-    // Create mailto link
-    const mailtoLink = `mailto:teamkreovix@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
-    // Open email client
-    window.open(mailtoLink, '_blank');
-
-    // Simulate processing time
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setStatusType('success');
-      setStatusMessage('Email client opened! Your message is ready to send.');
-      setFormData({ name: '', email: '', projectType: '', message: '' });
-      
-      setTimeout(() => {
-        setStatusMessage(null);
-        setStatusType(null);
-      }, 8000);
-    }, 1500);
+    window.location.href = `mailto:teamkreovix@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    showMessage('success', '📧 Email client opened!');
   };
 
   const projectTypes = [
@@ -153,22 +130,22 @@ ${formData.name}`;
       label: 'Email Us',
       value: 'teamkreovix@gmail.com',
       link: 'mailto:teamkreovix@gmail.com',
-      description: 'Send us a detailed message',
+      description: 'Send detailed message',
       copyable: true
     },
     {
       icon: MessageCircle,
-      label: 'WhatsApp Us',
-      value: 'Quick Chat',
-      link: 'https://wa.me/message/YOURMESSAGELINK',
-      description: 'Instant messaging support'
+      label: 'WhatsApp',
+      value: '+91 98719 71874',
+      link: 'https://api.whatsapp.com/send?phone=919871971874&text=Hi%20Kreovix!%20I%27d%20like%20to%20discuss%20a%20project.',
+      description: 'Instant messaging'
     },
     {
       icon: Instagram,
-      label: 'DM Us',
+      label: 'Instagram',
       value: '@thekreovix',
       link: 'https://www.instagram.com/thekreovix/',
-      description: 'Quick response on Instagram'
+      description: 'DM for quick response'
     }
   ];
 
@@ -204,93 +181,30 @@ ${formData.name}`;
   ];
 
   const features = [
-    {
-      icon: Clock,
-      title: "24-Hour Response",
-      description: "Quick replies guaranteed"
-    },
-    {
-      icon: Shield,
-      title: "Free Consultation",
-      description: "No-cost project discussion"
-    },
-    {
-      icon: Users,
-      title: "Dedicated Team",
-      description: "Personal project manager"
-    },
-    {
-      icon: Heart,
-      title: "100% Satisfaction",
-      description: "Unlimited revisions"
-    }
+    { icon: Clock, title: "24-Hour Response", description: "Quick replies" },
+    { icon: Shield, title: "Free Consultation", description: "No cost" },
+    { icon: Users, title: "Dedicated Team", description: "Personal manager" },
+    { icon: Heart, title: "100% Satisfaction", description: "Unlimited revisions" }
   ];
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94]
-      }
-    }
-  };
-
-  const slideInLeft = {
-    hidden: { opacity: 0, x: -60 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.8, ease: "easeOut" }
-    }
-  };
-
-  const slideInRight = {
-    hidden: { opacity: 0, x: 60 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.8, ease: "easeOut" }
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-background relative overflow-hidden">
-      {/* Background Elements */}
+    <div className="min-h-screen bg-[#0A0A0A] relative overflow-hidden">
+      {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neonPurple/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/3 w-80 h-80 bg-neonTeal/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#A259FF]/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/3 w-80 h-80 bg-[#00F5D4]/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
-      {/* Hero Section */}
-      <motion.section
-        ref={heroRef}
-        className="pt-25 pb-20 relative"
-      >
-        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
+      {/* Hero */}
+      <section ref={heroRef} className="pt-32 pb-20 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="mb-2"
           >
             <motion.div
-              className="inline-flex items-center gap-3 glassmorphism px-6 py-3 rounded-full border border-neonPurple/30 mb-8"
+              className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-xl border border-[#A259FF]/30 px-6 py-3 rounded-full mb-8"
               animate={{
                 boxShadow: [
                   '0 0 20px rgba(162, 89, 255, 0.2)',
@@ -300,352 +214,269 @@ ${formData.name}`;
               }}
               transition={{ duration: 3, repeat: Infinity }}
             >
-              <MessageSquare size={20} className="text-neonTeal" />
+              <MessageSquare size={20} className="text-[#00F5D4]" />
               <span className="text-white font-medium">Get In Touch</span>
             </motion.div>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8"
-          >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-poppins leading-tight">
-              <span className="gradient-text">Let&apos;s Create</span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8">
+              <span className="bg-gradient-to-r from-[#A259FF] to-[#00F5D4] bg-clip-text text-transparent">
+                Let's Create
+              </span>
               <br />
               <span className="text-white">Something Amazing</span>
               <br />
-              <span className="gradient-text">Together</span>
+              <span className="bg-gradient-to-r from-[#A259FF] to-[#00F5D4] bg-clip-text text-transparent">
+                Together
+              </span>
             </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
-            >
-              Ready to transform your content and elevate your brand? 
-              <span className="gradient-text font-semibold"> Get in touch</span> and let&apos;s discuss 
-              how we can bring your vision to life with our award-winning creative services.
-            </motion.p>
-          </motion.div>
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-16">
+              Ready to transform your content? Let's discuss your vision.
+            </p>
 
-          {/* Features Grid */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate={isHeroInView ? "visible" : "hidden"}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto"
-          >
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="glassmorphism p-6 rounded-2xl border border-white/10 text-center"
-                whileHover={{ y: -5, scale: 1.02 }}
-              >
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto">
+              {features.map((feature, i) => (
                 <motion.div
-                  className="w-12 h-12 bg-gradient-to-r from-neonPurple to-neonTeal rounded-xl flex items-center justify-center mx-auto mb-3"
-                  animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 8, repeat: Infinity, delay: index * 2 }}
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: i * 0.1 }}
+                  className="bg-white/5 backdrop-blur-xl border border-white/10 p-4 md:p-6 rounded-2xl text-center"
+                  whileHover={{ y: -5 }}
                 >
-                  <feature.icon size={24} className="text-white" />
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-xl flex items-center justify-center mx-auto mb-3">
+                    <feature.icon size={20} className="text-white" />
+                  </div>
+                  <h3 className="text-white font-semibold text-sm md:text-base mb-1">{feature.title}</h3>
+                  <p className="text-gray-400 text-xs md:text-sm">{feature.description}</p>
                 </motion.div>
-                <h3 className="text-white font-semibold mb-1">{feature.title}</h3>
-                <p className="text-gray-400 text-sm">{feature.description}</p>
-              </motion.div>
-            ))}
+              ))}
+            </div>
           </motion.div>
         </div>
-      </motion.section>
+      </section>
 
-      {/* Main Contact Section */}
-      <section className="py-20 relative">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            {/* Contact Form */}
+      {/* Main Content */}
+      <section className="py-12 md:py-20 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-16">
+            {/* Form */}
             <motion.div
               ref={formRef}
-              variants={slideInLeft}
-              initial="hidden"
-              animate={isFormInView ? "visible" : "hidden"}
+              initial={{ opacity: 0, x: -60 }}
+              animate={isFormInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8 }}
             >
-              <motion.div
-                className="glassmorphism p-8 rounded-3xl border border-white/10"
-                whileHover={{ scale: 1.01 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="mb-8">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text">
-                    Send Us a Message
-                  </h2>
-                  <p className="text-gray-300 leading-relaxed">
-                    Fill out the form below and choose how you&apos;d like to send us your message.
-                  </p>
-                </div>
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-3xl">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 bg-gradient-to-r from-[#A259FF] to-[#00F5D4] bg-clip-text text-transparent">
+                  Send a Message
+                </h2>
+                <p className="text-gray-300 mb-6 md:mb-8">Choose your preferred method.</p>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-white font-medium mb-3">
-                        Your Name *
-                      </label>
+                      <label className="block text-white font-medium mb-3">Your Name *</label>
                       <input
                         type="text"
-                        id="name"
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        required
-                        className="w-full glassmorphism border border-white/20 rounded-xl px-4 py-4 text-white placeholder-gray-500 focus:border-neonTeal focus:outline-none transition-all duration-300"
-                        placeholder="John Doe"
+                        className="w-full bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl px-4 py-3 md:py-4 text-white placeholder-gray-500 focus:border-[#00F5D4] focus:outline-none transition-all"
+                        placeholder="XYZ"
                       />
                     </div>
-
                     <div>
-                      <label htmlFor="email" className="block text-white font-medium mb-3">
-                        Email Address *
-                      </label>
+                      <label className="block text-white font-medium mb-3">Email *</label>
                       <input
                         type="email"
-                        id="email"
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        required
-                        className="w-full glassmorphism border border-white/20 rounded-xl px-4 py-4 text-white placeholder-gray-500 focus:border-neonTeal focus:outline-none transition-all duration-300"
-                        placeholder="john@example.com"
+                        className="w-full bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl px-4 py-3 md:py-4 text-white placeholder-gray-500 focus:border-[#00F5D4] focus:outline-none transition-all"
+                        placeholder="xyz@example.com"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="projectType" className="block text-white font-medium mb-3">
-                      Project Type *
-                    </label>
+                    <label className="block text-white font-medium mb-3">Project Type *</label>
                     <select
-                      id="projectType"
                       name="projectType"
                       value={formData.projectType}
                       onChange={handleInputChange}
-                      required
-                      className="w-full glassmorphism border border-white/20 rounded-xl px-4 py-4 text-white focus:border-neonTeal focus:outline-none transition-all duration-300"
+                      className="w-full bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl px-4 py-3 md:py-4 text-white focus:border-[#00F5D4] focus:outline-none transition-all"
                     >
-                      <option value="">Select a service...</option>
-                      {projectTypes.map((type, index) => (
-                        <option key={index} value={type} className="bg-background text-white">
-                          {type}
-                        </option>
+                      <option value="" className="bg-[#0A0A0A]">Select a service...</option>
+                      {projectTypes.map((type, i) => (
+                        <option key={i} value={type} className="bg-[#0A0A0A]">{type}</option>
                       ))}
                     </select>
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-white font-medium mb-3">
-                      Project Details *
-                    </label>
+                    <label className="block text-white font-medium mb-3">Project Details *</label>
                     <textarea
-                      id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
-                      required
                       rows={6}
-                      className="w-full glassmorphism border border-white/20 rounded-xl px-4 py-4 text-white placeholder-gray-500 focus:border-neonTeal focus:outline-none transition-all duration-300 resize-none"
-                      placeholder="Tell us about your project, timeline, budget range, and any specific requirements..."
+                      className="w-full bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl px-4 py-3 md:py-4 text-white placeholder-gray-500 focus:border-[#00F5D4] focus:outline-none transition-all resize-none"
+                      placeholder="Tell us about your project..."
                     />
                   </div>
 
-                  {/* Send Options */}
-                  <div className="flex flex-col sm:flex-row gap-4">
+                  {/* Buttons */}
+                  <div className="space-y-4">
                     <motion.button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className={`flex-1 px-6 py-4 rounded-xl font-medium text-lg transition-all duration-300 flex items-center justify-center gap-3 ${
-                        isSubmitting
-                          ? 'bg-gray-600 text-gray-300 cursor-not-allowed'
-                          : 'bg-gradient-to-r from-neonPurple to-neonTeal text-white hover:shadow-2xl'
-                      }`}
-                      whileHover={!isSubmitting ? { scale: 1.02, y: -2 } : {}}
-                      whileTap={!isSubmitting ? { scale: 0.98 } : {}}
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <motion.div
-                            animate={{ rotate: 360 }}
-                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                            className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
-                          />
-                          <span>Opening Email...</span>
-                        </>
-                      ) : (
-                        <>
-                          <Mail size={20} />
-                          <span>Send via Email</span>
-                        </>
-                      )}
-                    </motion.button>
-
-                    <motion.button
-                      type="button"
-                      onClick={sendWhatsAppMessage}
-                      className="flex-1 px-6 py-4 glassmorphism border border-green-500/30 rounded-xl font-medium text-lg hover:bg-green-500/20 transition-all duration-300 flex items-center justify-center gap-3 text-white"
+                      onClick={openFilloutForm}
+                      className="w-full px-6 py-3 md:py-4 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-xl font-medium text-base md:text-lg text-white flex items-center justify-center gap-3 shadow-lg shadow-[#A259FF]/30"
                       whileHover={{ scale: 1.02, y: -2 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <MessageCircle size={20} />
-                      <span>Send via WhatsApp</span>
+                      <FileText size={20} />
+                      Submit via Form
                     </motion.button>
-                  </div>
-                </form>
 
-                {/* Status Message */}
-                {statusMessage && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    className={`mt-6 p-4 rounded-xl flex items-center gap-3 ${
-                      statusType === 'success'
-                        ? 'bg-green-500/20 border border-green-500/30 text-green-300'
-                        : 'bg-red-500/20 border border-red-500/30 text-red-300'
-                    }`}
-                  >
-                    {statusType === 'success' ? (
-                      <CheckCircle size={20} />
-                    ) : (
-                      <AlertCircle size={20} />
-                    )}
-                    <span>{statusMessage}</span>
-                  </motion.div>
-                )}
-              </motion.div>
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <motion.button
+                        onClick={sendWhatsAppMessage}
+                        className="px-6 py-3 md:py-4 bg-white/5 backdrop-blur-xl border border-green-500/30 rounded-xl font-medium text-white flex items-center justify-center gap-3 hover:bg-green-500/20 transition-all"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <MessageCircle size={20} />
+                        WhatsApp
+                      </motion.button>
+
+                      <motion.button
+                        onClick={sendEmail}
+                        className="px-6 py-3 md:py-4 bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl font-medium text-white flex items-center justify-center gap-3 hover:bg-white/10 transition-all"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <Mail size={20} />
+                        Email
+                      </motion.button>
+                    </div>
+                  </div>
+
+                  {statusMessage && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className={`p-4 rounded-xl flex items-center gap-3 ${
+                        statusType === 'success'
+                          ? 'bg-green-500/20 border border-green-500/30 text-green-300'
+                          : 'bg-red-500/20 border border-red-500/30 text-red-300'
+                      }`}
+                    >
+                      {statusType === 'success' ? <CheckCircle size={20} /> : <AlertCircle size={20} />}
+                      <span className="text-sm">{statusMessage}</span>
+                    </motion.div>
+                  )}
+                </div>
+              </div>
             </motion.div>
 
-            {/* Contact Information */}
+            {/* Info */}
             <motion.div
               ref={contactRef}
-              variants={slideInRight}
-              initial="hidden"
-              animate={isContactInView ? "visible" : "hidden"}
-              className="space-y-8"
+              initial={{ opacity: 0, x: 60 }}
+              animate={isContactInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8 }}
+              className="space-y-6 md:space-y-8"
             >
               {/* Contact Methods */}
-              <motion.div
-                className="glassmorphism p-8 rounded-3xl border border-white/10"
-                whileHover={{ scale: 1.01 }}
-                transition={{ duration: 0.3 }}
-              >
-                <h3 className="text-2xl font-bold mb-6 gradient-text">Get in Touch</h3>
-                <div className="space-y-6">
-                  {contactInfo.map((info, index) => (
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-3xl">
+                <h3 className="text-xl md:text-2xl font-bold mb-6 bg-gradient-to-r from-[#A259FF] to-[#00F5D4] bg-clip-text text-transparent">
+                  Get in Touch
+                </h3>
+                <div className="space-y-4 md:space-y-6">
+                  {contactInfo.map((info, i) => (
                     <motion.div
-                      key={index}
-                      className="flex items-start gap-4 p-4 rounded-xl glassmorphism border border-white/5 hover:border-neonPurple/30 transition-all duration-300 group"
-                      whileHover={{ x: 5, scale: 1.02 }}
+                      key={i}
+                      className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-[#A259FF]/30 transition-all group"
+                      whileHover={{ x: 5 }}
                     >
-                      <motion.div
-                        className="w-12 h-12 bg-gradient-to-r from-neonPurple to-neonTeal rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform"
-                        whileHover={{ rotate: 5 }}
-                      >
+                      <div className="w-12 h-12 bg-gradient-to-r  from-purple-600 to-cyan-600 rounded-xl flex items-center justify-center flex-shrink-0">
                         <info.icon size={20} className="text-white" />
-                      </motion.div>
-                      <div className="flex-1">
+                      </div>
+                      <div className="flex-1 min-w-0">
                         <h4 className="text-white font-semibold mb-1">{info.label}</h4>
-                        <p className="text-neonTeal font-medium mb-1">{info.value}</p>
+                        <p className="text-[#00F5D4] font-medium mb-1 break-all">{info.value}</p>
                         <p className="text-gray-400 text-sm">{info.description}</p>
                       </div>
-                      <div className="flex gap-2">
+                      <div className="flex gap-2 flex-shrink-0">
                         {info.copyable && (
-                          <motion.button
+                          <button
                             onClick={copyEmail}
-                            className="p-2 glassmorphism rounded-lg hover:bg-neonPurple/20 transition-colors"
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            title="Copy email"
+                            className="p-2 bg-white/5 rounded-lg hover:bg-[#A259FF]/20 transition-colors"
+                            title="Copy"
                           >
                             <Copy size={16} className="text-gray-400" />
-                          </motion.button>
+                          </button>
                         )}
-                        <motion.a
+                        <a
                           href={info.link}
-                          target={info.link.startsWith('http') ? '_blank' : undefined}
-                          rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                          className="p-2 glassmorphism rounded-lg hover:bg-neonTeal/20 transition-colors"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                          title="Contact us"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-2 bg-white/5 rounded-lg hover:bg-[#00F5D4]/20 transition-colors"
+                          title="Open"
                         >
                           <ExternalLink size={16} className="text-gray-400" />
-                        </motion.a>
+                        </a>
                       </div>
                     </motion.div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
-              {/* Social Media */}
-              <motion.div
-                className="glassmorphism p-8 rounded-3xl border border-white/10"
-                whileHover={{ scale: 1.01 }}
-                transition={{ duration: 0.3 }}
-              >
-                <h3 className="text-2xl font-bold mb-6 gradient-text">Follow Our Journey</h3>
-                <p className="text-gray-300 mb-6">
-                  Stay updated with our latest projects and behind-the-scenes content.
-                </p>
-                
-                <div className="grid grid-cols-1 gap-4">
-                  {socialLinks.map((social, index) => (
+              {/* Social */}
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-3xl">
+                <h3 className="text-xl md:text-2xl font-bold mb-6 bg-gradient-to-r from-[#50139f] to-[#00F5D4] bg-clip-text text-transparent">
+                  Follow Us
+                </h3>
+                <div className="space-y-4">
+                  {socialLinks.map((social, i) => (
                     <motion.a
-                      key={index}
+                      key={i}
                       href={social.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="glassmorphism p-4 rounded-xl border border-white/10 hover:border-white/30 transition-all duration-300 flex items-center gap-4 group"
+                      className="bg-white/5 p-4 rounded-xl border border-white/10 hover:border-white/30 flex items-center gap-4 group transition-all"
                       whileHover={{ scale: 1.02, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
                     >
-                      <motion.div
-                        className={`w-12 h-12 bg-gradient-to-r ${social.color} rounded-xl flex items-center justify-center`}
-                        whileHover={{ rotate: 5 }}
-                      >
+                      <div className={`w-12 h-12 bg-gradient-to-r ${social.color} rounded-xl flex items-center justify-center flex-shrink-0`}>
                         <social.icon size={20} className="text-white" />
-                      </motion.div>
-                      <div className="flex-1">
-                        <div className="text-white font-medium group-hover:gradient-text transition-all">
-                          {social.name}
-                        </div>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-white font-medium">{social.name}</div>
                         <div className="text-gray-400 text-sm">{social.handle}</div>
                       </div>
-                      <ExternalLink size={16} className="text-gray-400 group-hover:text-neonTeal transition-colors" />
+                      <ExternalLink size={16} className="text-gray-400 group-hover:text-[#00F5D4] transition-colors flex-shrink-0" />
                     </motion.a>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
-              {/* Response Promise */}
-              <motion.div
-                className="glassmorphism p-6 rounded-3xl border border-white/10 border-l-4 border-l-neonTeal"
-                whileHover={{ scale: 1.01 }}
-                transition={{ duration: 0.3 }}
-              >
+              {/* Guarantee */}
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 border-l-4 border-l-[#00F5D4] p-6 rounded-3xl">
                 <div className="flex items-start gap-3">
-                  <Zap size={20} className="text-neonTeal mt-1" />
+                  <Zap size={20} className="text-[#00F5D4] mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="text-white font-semibold mb-2">Quick Response Guarantee</h4>
+                    <h4 className="text-white font-semibold mb-2">24-Hour Response</h4>
                     <p className="text-gray-300 text-sm leading-relaxed">
-                      We respond to all inquiries within 24 hours. For urgent projects, 
-                      DM us on Instagram or WhatsApp for immediate assistance.
+                      We respond within 24 hours. For urgent projects, message on WhatsApp or Instagram.
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
