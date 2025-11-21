@@ -40,11 +40,11 @@ const services = [
       "Brand Voice Development"
     ],
     packages: [
-      { name: "Starter", price: "$499", period: "/month" },
-      { name: "Professional", price: "$999", period: "/month" },
-      { name: "Enterprise", price: "$1999", period: "/month" }
+      { name: "Starter", price: "$49", period: "/month" },
+      { name: "Professional", price: "$199", period: "/month" },
+      { name: "Enterprise", price: "$399", period: "/month" }
     ],
-    stats: { projects: "200+", satisfaction: "98%", growth: "150%" },
+    stats: { projects: "70+", satisfaction: "98%", growth: "150%" },
     color: "from-neonPurple to-pink-500",
     gradient: "from-purple-900/20 to-pink-900/20",
     process: ["Strategy", "Content Creation", "Publishing", "Analytics"]
@@ -64,11 +64,11 @@ const services = [
       "UI/UX Design"
     ],
     packages: [
-      { name: "Basic", price: "$299", period: "/project" },
-      { name: "Premium", price: "$599", period: "/project" },
-      { name: "Complete", price: "$999", period: "/project" }
+      { name: "Basic", price: "$99", period: "/project" },
+      { name: "Premium", price: "$199", period: "/project" },
+      { name: "Complete", price: "$299", period: "/project" }
     ],
-    stats: { projects: "500+", satisfaction: "99%", growth: "200%" },
+    stats: { projects: "100+", satisfaction: "99%", growth: "200%" },
     color: "from-neonTeal to-blue-500",
     gradient: "from-teal-900/20 to-blue-900/20",
     process: ["Discovery", "Concept", "Design", "Refinement"]
@@ -88,11 +88,11 @@ const services = [
       "Format Optimization"
     ],
     packages: [
-      { name: "Quick Edit", price: "$199", period: "/video" },
-      { name: "Pro Edit", price: "$399", period: "/video" },
-      { name: "Cinematic", price: "$799", period: "/video" }
+      { name: "Quick Edit", price: "$79", period: "/video" },
+      { name: "Pro Edit", price: "$149", period: "/video" },
+      { name: "Cinematic", price: "$299", period: "/video" }
     ],
-    stats: { projects: "1000+", satisfaction: "97%", growth: "180%" },
+    stats: { projects: "500+", satisfaction: "97%", growth: "180%" },
     color: "from-purple-500 to-neonPurple",
     gradient: "from-purple-900/20 to-indigo-900/20",
     process: ["Review", "Edit", "Effects", "Delivery"]
@@ -112,11 +112,11 @@ const services = [
       "Live Streaming"
     ],
     packages: [
-      { name: "Half Day", price: "$799", period: "/shoot" },
-      { name: "Full Day", price: "$1299", period: "/shoot" },
-      { name: "Production", price: "$2499", period: "/shoot" }
+      { name: "Half Day", price: "$299", period: "/shoot" },
+      { name: "Full Day", price: "$699", period: "/shoot" },
+      { name: "Production", price: "$999", period: "/shoot" }
     ],
-    stats: { projects: "300+", satisfaction: "100%", growth: "220%" },
+    stats: { projects: "150+", satisfaction: "100%", growth: "220%" },
     color: "from-teal-500 to-neonTeal", 
     gradient: "from-teal-900/20 to-cyan-900/20",
     process: ["Planning", "Shooting", "Editing", "Delivery"]
@@ -136,11 +136,11 @@ const services = [
       "Post-Processing"
     ],
     packages: [
-      { name: "Essential", price: "$399", period: "/session" },
-      { name: "Professional", price: "$699", period: "/session" },
-      { name: "Premium", price: "$1199", period: "/session" }
+      { name: "Essential", price: "$69", period: "/session" },
+      { name: "Professional", price: "$129", period: "/session" },
+      { name: "Premium", price: "$299", period: "/session" }
     ],
-    stats: { projects: "800+", satisfaction: "99%", growth: "190%" },
+    stats: { projects: "300+", satisfaction: "99%", growth: "190%" },
     color: "from-purple to-cyan-600",
     gradient: "from-purple-900/20 to-cyan-900/20",
     process: ["Concept", "Shoot", "Edit", "Deliver"]
@@ -160,9 +160,9 @@ const services = [
       "Post-Processing"
     ],
     packages: [
-      { name: "Essential", price: "$399", period: "/session" },
-      { name: "Professional", price: "$699", period: "/session" },
-      { name: "Premium", price: "$1199", period: "/session" }
+      { name: "Essential", price: "$159", period: "/session" },
+      { name: "Professional", price: "$329", period: "/session" },
+      { name: "Premium", price: "$479", period: "/session" }
     ],
     stats: { projects: "50+", satisfaction: "99%", growth: "190%" },
     color: "from-purple to-green-400",
@@ -573,7 +573,7 @@ const Services = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="max-w-4xl mx-auto px-6 text-center">
+      <section className="max-w-4xl mx-auto px-6 text-center mb-16">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}

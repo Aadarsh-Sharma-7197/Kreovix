@@ -84,33 +84,26 @@ const About = ({ setCursorVariant }) => {
   // Team members
   const team = [
     {
-      name: "Alex Rivera",
+      name: "Amit Kumar Yadav",
       role: "Creative Director & Founder",
       image: "https://via.placeholder.com/300x400/A259FF/FFFFFF?text=Alex+R",
       bio: "Visionary leader with 10+ years in creative direction and brand strategy.",
       skills: ["Creative Direction", "Brand Strategy", "Leadership"]
     },
     {
-      name: "Sarah Chen",
-      role: "Lead Video Editor",
+      name: "Aadarsh Sharma",
+      role: "Developer",
       image: "https://via.placeholder.com/300x400/00F5D4/FFFFFF?text=Sarah+C",
-      bio: "Award-winning video editor specializing in viral content and storytelling.",
-      skills: ["Video Editing", "Motion Graphics", "Storytelling"]
+      bio: "Developer focused on creating efficient and user friendly web solutions.",
+      skills: ["Full Stack"]
     },
     {
-      name: "Marcus Johnson",
-      role: "Senior Graphic Designer",
+      name: "Abhilasha Sharma",
+      role: "Developer",
       image: "https://via.placeholder.com/300x400/FF6B6B/FFFFFF?text=Marcus+J",
-      bio: "Brand identity expert who transforms ideas into compelling visual narratives.",
-      skills: ["Brand Design", "Typography", "Print Design"]
+      bio: "Developer who loves building smooth, modern, and user focused web expriences.",
+      skills: ["Frontend"]
     },
-    {
-      name: "Emma Rodriguez",
-      role: "Social Media Strategist",
-      image: "https://via.placeholder.com/300x400/9B59B6/FFFFFF?text=Emma+R",
-      bio: "Digital marketing maven who creates viral campaigns and engaging content.",
-      skills: ["Social Strategy", "Content Creation", "Analytics"]
-    }
   ];
 
   // Company stats
@@ -339,8 +332,9 @@ const About = ({ setCursorVariant }) => {
                 transition={{ duration: 0.8, delay: 1.2 }}
                 className="flex items-center gap-6"
               >
+                <Link to="/portfolio"> 
                 <motion.button
-                  className="px-8 py-4 bg-gradient-to-r from-neonPurple to-neonTeal rounded-2xl font-medium text-lg"
+                  className="px-8 py-4 border-white rounded-2xl font-medium text-lg"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   onMouseEnter={() => setCursorVariant && setCursorVariant('button')}
@@ -348,14 +342,7 @@ const About = ({ setCursorVariant }) => {
                 >
                   Our Portfolio
                 </motion.button>
-                
-                <motion.div
-                  className="flex items-center gap-2 text-gray-400 hover:text-neonTeal transition-colors cursor-pointer"
-                  whileHover={{ x: 5 }}
-                >
-                  <Play size={16} />
-                  <span>Watch Our Journey</span>
-                </motion.div>
+              </Link>
               </motion.div>
             </motion.div>
 
@@ -643,7 +630,7 @@ const About = ({ setCursorVariant }) => {
             variants={containerVariants}
             initial="hidden"
             animate={isTeamInView ? "visible" : "hidden"}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-25"
           >
             {team.map((member, index) => (
               <motion.div
