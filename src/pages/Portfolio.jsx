@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import Footer from '../components/Footer';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { 
   Grid3X3,
@@ -12,6 +13,7 @@ import {
   X,
   Sparkles
 } from 'lucide-react';
+import Footer from '../components/Footer';
 
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -160,11 +162,7 @@ const Portfolio = () => {
               </div>
 
               {/* Type Badge */}
-              <div className="absolute top-3 right-3 px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-[#00F5D4]/30">
-                <span className="text-xs font-bold text-[#83eee0] uppercase tracking-wider">
-                  {isShort ? 'Short' : isVideo ? 'Video' : 'Photo'}
-                </span>
-              </div>
+              
 
               {/* Glow effect on hover */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
@@ -238,9 +236,9 @@ const Portfolio = () => {
               <motion.button
                 key={filter.id}
                 onClick={() => setActiveFilter(filter.id)}
-                className={`flex items-center gap-2 px-4 md:px-5 py-2.5 md:py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
+                className={`flex items-center gap-2 px-4 md:px-5 py-2.5 md:py-3 rounded-xl font-semibold text-lg transition-all duration-300 ${
                   activeFilter === filter.id
-                    ? 'bg-gradient-to-r from-[#A259FF] to-[#00F5D4] text-white shadow-lg'
+                    ? 'bg-gradient-to-r from-purple to-cyan-400 text-white shadow-lg'
                     : 'text-gray-300 hover:text-white hover:bg-white/5'
                 }`}
                 whileHover={{ scale: 1.05 }}
@@ -391,6 +389,7 @@ const Portfolio = () => {
           animation: gradient 3s ease infinite;
         }
       `}</style>
+      <Footer/>
     </div>
   );
 };
