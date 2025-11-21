@@ -36,7 +36,6 @@ function App() {
     <div className="bg-background text-white min-h-screen overflow-x-hidden">
       <Router>
         <Navbar />
-
           <ScrollToTop />
 
           <AnimatePresence mode="wait">
