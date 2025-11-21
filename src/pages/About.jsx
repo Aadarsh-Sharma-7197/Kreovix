@@ -115,9 +115,8 @@ const About = ({ setCursorVariant }) => {
 
   // Company stats
   const stats = [
-    { number: "500+", label: "Happy Clients", icon: Users, color: "from-neonPurple to-pink-500" },
-    { number: "2K+", label: "Projects Completed", icon: Target, color: "from-neonTeal to-blue-500" },
-    { number: "50+", label: "Awards Won", icon: Award, color: "from-purple-500 to-neonPurple" },
+    { number: "100+", label: "Happy Clients", icon: Users, color: "from-neonPurple to-pink-500" },
+    { number: "1K+", label: "Projects Completed", icon: Target, color: "from-neonTeal to-blue-500" },
     { number: "5+", label: "Years Experience", icon: Clock, color: "from-orange-500 to-red-500" },
     { number: "98%", label: "Client Satisfaction", icon: Star, color: "from-green-500 to-teal-500" },
     { number: "24/7", label: "Support Available", icon: Shield, color: "from-blue-500 to-indigo-500" }

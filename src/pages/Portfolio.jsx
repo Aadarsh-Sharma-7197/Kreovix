@@ -42,7 +42,7 @@ const Portfolio = () => {
       category: "short-form",
       service: "Short Form Video",
       mediaType: "youtube",
-      youtubeId: "", // EDIT: Add your YouTube video ID here
+      youtubeId: "_J8eCsRXvcI", // EDIT: Add your YouTube video ID here
       title: "Project Title 1",
       client: "Client Name",
       duration: "0:45"
@@ -52,7 +52,7 @@ const Portfolio = () => {
       category: "short-form",
       service: "Short Form Video",
       mediaType: "youtube",
-      youtubeId: "", // EDIT: Add your YouTube video ID here
+      youtubeId: "7ldCgaTFgiM", // EDIT: Add your YouTube video ID here
       title: "Project Title 2",
       client: "Client Name",
       duration: "0:30"
@@ -62,7 +62,7 @@ const Portfolio = () => {
       category: "short-form",
       service: "Short Form Video",
       mediaType: "youtube",
-      youtubeId: "", // EDIT: Add your YouTube video ID here
+      youtubeId: "IObybxqi0zs", // EDIT: Add your YouTube video ID here
       title: "Project Title 3",
       client: "Client Name",
       duration: "0:58"
@@ -106,7 +106,7 @@ const Portfolio = () => {
       category: "photography",
       service: "Photography",
       mediaType: "image",
-      mediaPath: "/portfolio/photography/photo1.jpg", // EDIT: Add your image path
+      mediaPath: "", // EDIT: Add your image path
       title: "Project Title 7",
       client: "Client Name"
     },
@@ -115,7 +115,7 @@ const Portfolio = () => {
       category: "photography",
       service: "Photography",
       mediaType: "image",
-      mediaPath: "/portfolio/photography/photo2.jpg", // EDIT: Add your image path
+      mediaPath: "", // EDIT: Add your image path
       title: "Project Title 8",
       client: "Client Name"
     },
@@ -124,7 +124,7 @@ const Portfolio = () => {
       category: "photography",
       service: "Photography",
       mediaType: "image",
-      mediaPath: "/portfolio/photography/photo3.jpg", // EDIT: Add your image path
+      mediaPath: "", // EDIT: Add your image path
       title: "Project Title 9",
       client: "Client Name"
     },
@@ -135,7 +135,7 @@ const Portfolio = () => {
       category: "graphic-design",
       service: "Graphic Design",
       mediaType: "image",
-      mediaPath: "/portfolio/graphic-design/design1.jpg", // EDIT: Add your image path
+      mediaPath: "", // EDIT: Add your image path
       title: "Project Title 10",
       client: "Client Name"
     },
@@ -144,7 +144,7 @@ const Portfolio = () => {
       category: "graphic-design",
       service: "Graphic Design",
       mediaType: "image",
-      mediaPath: "/portfolio/graphic-design/design2.jpg", // EDIT: Add your image path
+      mediaPath: "", // EDIT: Add your image path
       title: "Project Title 11",
       client: "Client Name"
     },
@@ -153,7 +153,7 @@ const Portfolio = () => {
       category: "graphic-design",
       service: "Graphic Design",
       mediaType: "image",
-      mediaPath: "/portfolio/graphic-design/design3.jpg", // EDIT: Add your image path
+      mediaPath: "", // EDIT: Add your image path
       title: "Project Title 12",
       client: "Client Name"
     },

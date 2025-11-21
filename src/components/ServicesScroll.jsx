@@ -280,17 +280,7 @@ const ServiceCard = ({ service, index, setCursorVariant }) => {
         </div>
 
         {/* Project Counter */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: service.delay + 0.5 }}
-          className="absolute -bottom-4 -right-4 glassmorphism rounded-xl p-4 shadow-lg"
-        >
-          <p className={`text-2xl font-bold bg-gradient-to-r ${service.color} bg-clip-text text-transparent`}>
-            {100 + index * 50}+
-          </p>
-          <p className="text-xs text-gray-400">Projects</p>
-        </motion.div>
+        
       </motion.div>
 
     </motion.div>

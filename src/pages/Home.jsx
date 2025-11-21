@@ -16,7 +16,9 @@ import {
   Heart,
   MessageCircle,
   TrendingUp,
-  Rocket
+  Rocket,
+  Target,
+  Clock
 } from 'lucide-react';
 import ServicesScroll from '../components/ServicesScroll';
 import Footer from '../components/Footer';
@@ -69,10 +71,10 @@ const Home = () => {
   };
 
   const stats = [
-    { icon: Users, number: '500+', label: 'Happy Clients', color: 'from-neonPurple to-pink-500' },
-    { icon: Video, number: '2K+', label: 'Videos Created', color: 'from-neonTeal to-blue-500' },
-    { icon: Award, number: '50+', label: 'Awards Won', color: 'from-purple-500 to-neonPurple' },
-    { icon: Star, number: '4.9', label: 'Client Rating', color: 'from-neonPurple to-neonTeal' }
+    { icon: Users, number: '100+', label: 'Happy Clients', color: 'from-neonPurple to-pink-500' },
+    { icon: Target, number: '1k+', label: 'Projects Completed', color: 'from-neonTeal to-blue-500' },
+    { number: "5+", label: "Years Experience", icon: Clock, color: "from-orange-500 to-red-500" },
+    { icon: Star, number: '4.5', label: 'Client Rating', color: 'from-neonPurple to-neonTeal' }
   ];
 
   const containerVariants = {
