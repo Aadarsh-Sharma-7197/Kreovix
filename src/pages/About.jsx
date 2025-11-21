@@ -570,7 +570,7 @@ const About = ({ setCursorVariant }) => {
             variants={containerVariants}
             initial="hidden"
             animate={isStatsInView ? "visible" : "hidden"}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8"
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8"
           >
             {stats.map((stat, index) => (
               <motion.div
