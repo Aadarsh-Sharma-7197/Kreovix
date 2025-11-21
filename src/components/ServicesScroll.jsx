@@ -9,11 +9,12 @@ import {
   ArrowRight,
   Play,
   Eye,
+  Code,
 } from 'lucide-react';
 
 /* -------------------------------------------------------
    SERVICES DATA
-   (kept inside same file as requested)
+   Add your media files to public/services/ folder
 ------------------------------------------------------- */
 const services = [
   {
@@ -22,7 +23,10 @@ const services = [
     description: "Strategic campaigns that amplify your brand across all platforms with data-driven content that converts.",
     features: ["Content Strategy", "Community Management", "Paid Advertising", "Analytics & Reporting"],
     color: "from-neonPurple to-pink-500",
-    delay: 0.08
+    delay: 0.08,
+    mediaType: "image",
+    mediaPath: "/3.png",
+    serviceLink: "/services/social-media-marketing"
   },
   {
     icon: Palette,
@@ -30,7 +34,21 @@ const services = [
     description: "Visual storytelling that captures attention and drives engagement through stunning, purposeful design.",
     features: ["Brand Identity", "Marketing Materials", "Digital Graphics", "Print Design"],
     color: "from-neonTeal to-blue-500",
-    delay: 0.12
+    delay: 0.12,
+    mediaType: "image",
+    mediaPath: "/1.jpg",
+    serviceLink: "/services/graphic-design"
+  },
+  {
+    icon: Code,
+    title: "Web Development",
+    description: "Custom websites and web applications built with cutting-edge technology for optimal performance and user experience.",
+    features: ["Responsive Design", "E-commerce Solutions", "Web Applications", "CMS Development"],
+    color: "from-blue-500 to-purple-500",
+    delay: 0.16,
+    mediaType: "image",
+    mediaPath: "/dev.jpg",
+    serviceLink: "/services/web-development"
   },
   {
     icon: Edit3,
@@ -38,7 +56,10 @@ const services = [
     description: "Post-production magic that brings your vision to life with cinematic quality and creative flair.",
     features: ["Color Grading", "Motion Graphics", "Audio Enhancement", "Visual Effects"],
     color: "from-purple-500 to-neonPurple",
-    delay: 0.16
+    delay: 0.20,
+    mediaType: "image",
+    mediaPath: "/6.jpg",
+    serviceLink: "/services/video-editing"
   },
   {
     icon: Video,
@@ -46,7 +67,10 @@ const services = [
     description: "Cinematic content creation that tells compelling stories and showcases your brand beautifully.",
     features: ["Corporate Videos", "Product Showcases", "Event Coverage", "Commercial Production"],
     color: "from-teal-500 to-neonTeal",
-    delay: 0.20
+    delay: 0.24,
+    mediaType: "image",
+    mediaPath: "/5.jpg",
+    serviceLink: "/services/videography"
   },
   {
     icon: Camera,
@@ -54,7 +78,10 @@ const services = [
     description: "Professional imagery that showcases your brand's essence and captures perfect moments.",
     features: ["Product Photography", "Corporate Portraits", "Event Photography", "Lifestyle Shots"],
     color: "from-neonPurple to-neonTeal",
-    delay: 0.24
+    delay: 0.28,
+    mediaType: "image",
+    mediaPath: "/4.jpg",
+    serviceLink: "/services/photography"
   }
 ];
 
@@ -163,37 +190,39 @@ const ServiceCard = ({ service, index, setCursorVariant }) => {
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 pt-5">
           
-          {/* Primary Button */}
-          <motion.button
-            whileHover={{ scale: 1.06, y: -2 }}
-            whileTap={{ scale: 0.94 }}
+          {/* Primary Button - Learn More */}
+          <motion.a
+            href={service.serviceLink}
+            whileHover={{ scale: 1.08, y: -3 }}
+            whileTap={{ scale: 0.95 }}
             onMouseEnter={() => setCursorVariant("button")}
             onMouseLeave={() => setCursorVariant("default")}
-            className={`px-6 py-3 bg-gradient-to-r ${service.color} rounded-xl font-medium text-white shadow-lg`}
+            className={`group/btn px-8 py-4 bg-gradient-to-r ${service.color} rounded-xl font-semibold text-white shadow-2xl hover:shadow-[${service.color}]/50 transition-all duration-300 text-center cursor-pointer`}
           >
-            <span className="flex items-center gap-2">
+            <span className="flex items-center justify-center gap-3">
               Learn More
-              <ArrowRight size={16} />
+              <ArrowRight size={20} className="group-hover/btn:translate-x-1 transition-transform" />
             </span>
-          </motion.button>
+          </motion.a>
 
-          {/* Secondary Button */}
-          <motion.button
-            whileHover={{ scale: 1.06, y: -2 }}
-            whileTap={{ scale: 0.94 }}
+          {/* Secondary Button - View Portfolio */}
+          <motion.a
+            href="/portfolio"
+            whileHover={{ scale: 1.08, y: -3 }}
+            whileTap={{ scale: 0.95 }}
             onMouseEnter={() => setCursorVariant("button")}
             onMouseLeave={() => setCursorVariant("default")}
-            className="px-6 py-3 border-2 border-neonTeal text-neonTeal rounded-xl font-medium hover:bg-neonTeal hover:text-background transition-all"
+            className="group/btn px-8 py-4 bg-gradient-to-r from-gray-800 to-gray-900 backdrop-blur-sm border-2 border-neonTeal text-neonTeal rounded-xl font-semibold hover:bg-gradient-to-r hover:from-neonTeal hover:to-cyan-500 hover:text-black hover:border-neonTeal transition-all duration-300 shadow-lg hover:shadow-neonTeal/50 text-center cursor-pointer"
           >
-            <span className="flex items-center gap-2">
-              <Eye size={16} />
+            <span className="flex items-center justify-center gap-3">
+              <Eye size={20} />
               View Portfolio
             </span>
-          </motion.button>
+          </motion.a>
         </div>
       </motion.div>
 
-      {/* ----------------- RIGHT SIDE (VISUAL) ----------------- */}
+      {/* ----------------- RIGHT SIDE (VISUAL WITH MEDIA) ----------------- */}
       <motion.div
         initial={{ opacity: 0, x: isEven ? 50 : -50 }}
         animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -203,38 +232,50 @@ const ServiceCard = ({ service, index, setCursorVariant }) => {
         onMouseLeave={() => setCursorVariant("default")}
       >
         {/* Visual Container */}
-        <div className="relative aspect-square glassmorphism rounded-3xl p-8 overflow-hidden shadow-xl">
+        <div className="relative aspect-square glassmorphism rounded-3xl overflow-hidden shadow-xl">
 
-          {/* Soft Gradient Background */}
-          <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-10 group-hover:opacity-20 transition-all duration-500`} />
+          {/* Background Media (Image or Video) */}
+          <div className="absolute inset-0">
+            {service.mediaType === 'video' ? (
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+              >
+                <source src={service.mediaPath} type="video/mp4" />
+              </video>
+            ) : (
+              <img
+                src={service.mediaPath}
+                alt={service.title}
+                className="w-full h-full object-cover"
+              />
+            )}
+          </div>
 
-          {/* Floating Glow Circle */}
-          <motion.div
-            animate={{ rotate: [0, 360], scale: [1, 1.15, 1] }}
-            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-            className={`absolute inset-0 flex items-center justify-center`}
+          {/* Subtle Gradient Overlay */}
+          <div className={`absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/40 group-hover:from-black/10 group-hover:to-black/30 transition-all duration-500`} />
+
+          {/* Hover Overlay with Link */}
+          <motion.a
+            href="/portfolio"
+            className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col items-center justify-center cursor-pointer z-20"
           >
-            <div className={`w-32 h-32 rounded-full bg-gradient-to-r ${service.color} opacity-20`} />
-          </motion.div>
-
-          {/* Center Icon */}
-          <motion.div
-            whileHover={{ scale: 1.25, rotate: 12 }}
-            transition={{ type: "spring", stiffness: 200, damping: 15 }}
-            className={`relative z-10 w-24 h-24 rounded-2xl bg-gradient-to-r ${service.color} flex items-center justify-center shadow-2xl`}
-          >
-            <service.icon size={48} className="text-white" />
-          </motion.div>
-
-          {/* Hover Overlay */}
-          <motion.div
-            className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end justify-center pb-8"
-          >
-            <div className="text-center">
-              <Play size={24} className="text-white mx-auto mb-1" />
-              <span className="text-white text-xs tracking-wide">Preview Work</span>
-            </div>
-          </motion.div>
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              whileHover={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              className="text-center"
+            >
+              <div className={`w-20 h-20 rounded-full bg-gradient-to-r ${service.color} flex items-center justify-center mx-auto mb-4 shadow-2xl`}>
+                <Play size={32} className="text-white ml-1" />
+              </div>
+              <span className="text-white text-xl font-bold tracking-wide mb-2">Preview Work</span>
+              <p className="text-gray-300 text-sm">View Portfolio →</p>
+            </motion.div>
+          </motion.a>
 
         </div>
 
@@ -256,4 +297,4 @@ const ServiceCard = ({ service, index, setCursorVariant }) => {
   );
 };
 
-export default ServicesScroll;
+export default ServicesScroll;      
