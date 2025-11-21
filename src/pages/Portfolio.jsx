@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import Footer from '../components/Footer';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { 
   Grid3X3,
