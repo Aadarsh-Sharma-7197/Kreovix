@@ -20,6 +20,7 @@ import {
   TrendingUp,
   MousePointer,
   Sparkles,
+  Code
 } from 'lucide-react';
 import Footer from '../components/Footer';
 
@@ -140,8 +141,32 @@ const services = [
       { name: "Premium", price: "$1199", period: "/session" }
     ],
     stats: { projects: "800+", satisfaction: "99%", growth: "190%" },
-    color: "from-neonPurple to-neonTeal",
-    gradient: "from-purple-900/20 to-teal-900/20",
+    color: "from-purple to-cyan-600",
+    gradient: "from-purple-900/20 to-cyan-900/20",
+    process: ["Concept", "Shoot", "Edit", "Deliver"]
+  },
+  {
+    id: 6,
+    icon: Code,
+    title: "Web Development",
+    shortDesc: "Professional imagery that showcases your brand's essence",
+    fullDesc: "Capture the perfect moment with our professional photography services. Whether it's product shots, corporate headshots, or event coverage, we deliver high-quality images that tell your story and showcase your brand in the best light.",
+    features: [
+      "Product Photography",
+      "Corporate Portraits", 
+      "Event Photography",
+      "Architectural Shots",
+      "Lifestyle Photography",
+      "Post-Processing"
+    ],
+    packages: [
+      { name: "Essential", price: "$399", period: "/session" },
+      { name: "Professional", price: "$699", period: "/session" },
+      { name: "Premium", price: "$1199", period: "/session" }
+    ],
+    stats: { projects: "50+", satisfaction: "99%", growth: "190%" },
+    color: "from-purple to-green-400",
+    gradient: "from-purple-900/20 to-green-900/20",
     process: ["Concept", "Shoot", "Edit", "Deliver"]
   }
 ];
@@ -329,7 +354,7 @@ const Services = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 border-2 border-neonTeal text-neonTeal rounded-xl font-medium hover:bg-neonTeal hover:text-background transition-colors"
+                  className="px-8 py-4 border-2 border-neonTeal text-neonTeal rounded-xl font-medium"
                 >
                   <span className="flex items-center gap-2">
                     <Play size={18} />

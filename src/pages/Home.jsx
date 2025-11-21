@@ -74,7 +74,7 @@ const Home = () => {
     { icon: Users, number: '100+', label: 'Happy Clients', color: 'from-neonPurple to-pink-500' },
     { icon: Target, number: '1k+', label: 'Projects Completed', color: 'from-neonTeal to-blue-500' },
     { number: "5+", label: "Years Experience", icon: Clock, color: "from-orange-500 to-red-500" },
-    { icon: Star, number: '4.5', label: 'Client Rating', color: 'from-neonPurple to-neonTeal' }
+    { icon: Star, number: '4.5', label: 'Client Rating', color: 'from-purple to-green-400' }
   ];
 
   const containerVariants = {

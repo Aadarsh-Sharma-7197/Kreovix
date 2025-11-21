@@ -44,7 +44,7 @@ const services = [
     title: "Web Development",
     description: "Custom websites and web applications built with cutting-edge technology for optimal performance and user experience.",
     features: ["Responsive Design", "E-commerce Solutions", "Web Applications", "CMS Development"],
-    color: "from-blue-500 to-purple-500",
+    color: "from-purple to-green-400",
     delay: 0.16,
     mediaType: "image",
     mediaPath: "/dev.jpg",
@@ -77,7 +77,7 @@ const services = [
     title: "Photography",
     description: "Professional imagery that showcases your brand's essence and captures perfect moments.",
     features: ["Product Photography", "Corporate Portraits", "Event Photography", "Lifestyle Shots"],
-    color: "from-neonPurple to-neonTeal",
+    color: "from-purple to-cyan-600",
     delay: 0.28,
     mediaType: "image",
     mediaPath: "/4.jpg",
@@ -197,7 +197,7 @@ const ServiceCard = ({ service, index, setCursorVariant }) => {
             whileTap={{ scale: 0.95 }}
             onMouseEnter={() => setCursorVariant("button")}
             onMouseLeave={() => setCursorVariant("default")}
-            className={`group/btn px-8 py-4 bg-gradient-to-r ${service.color} rounded-xl font-semibold text-white shadow-2xl hover:shadow-[${service.color}]/50 transition-all duration-300 text-center cursor-pointer`}
+            className={`group/btn px-8 py-4 bg-gradient-to-r ${service.color} rounded-xl font-semibold text-white shadow-2xl  transition-all duration-300 text-center cursor-pointer`}
           >
             <span className="flex items-center justify-center gap-3">
               Learn More
@@ -212,7 +212,7 @@ const ServiceCard = ({ service, index, setCursorVariant }) => {
             whileTap={{ scale: 0.95 }}
             onMouseEnter={() => setCursorVariant("button")}
             onMouseLeave={() => setCursorVariant("default")}
-            className="group/btn px-8 py-4 bg-gradient-to-r from-gray-800 to-gray-900 backdrop-blur-sm border-2 border-neonTeal text-neonTeal rounded-xl font-semibold hover:bg-gradient-to-r hover:from-neonTeal hover:to-cyan-500 hover:text-black hover:border-neonTeal transition-all duration-300 shadow-lg hover:shadow-neonTeal/50 text-center cursor-pointer"
+            className="group/btn px-8 py-4 bg-gradient-to-r from-gray-800 to-gray-900 backdrop-blur-sm border-2 border-neonTeal text-neonTeal rounded-xl font-semibold hover:bg-gradient-to-r hover:from-neonTeal transition-all duration-300 shadow-lg hover:shadow-neonTeal/50 text-center cursor-pointer"
           >
             <span className="flex items-center justify-center gap-3">
               <Eye size={20} />
