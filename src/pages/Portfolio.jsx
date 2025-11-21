@@ -15,6 +15,7 @@ import {
   Clock
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -40,7 +41,6 @@ const Portfolio = () => {
     {
       id: 1,
       category: "short-form",
-      service: "Short Form Video",
       mediaType: "youtube",
       youtubeId: "_J8eCsRXvcI", // EDIT: Add your YouTube video ID here
       title: "Project Title 1",
@@ -50,7 +50,6 @@ const Portfolio = () => {
     {
       id: 2,
       category: "short-form",
-      service: "Short Form Video",
       mediaType: "youtube",
       youtubeId: "7ldCgaTFgiM", // EDIT: Add your YouTube video ID here
       title: "Project Title 2",
@@ -60,7 +59,6 @@ const Portfolio = () => {
     {
       id: 3,
       category: "short-form",
-      service: "Short Form Video",
       mediaType: "youtube",
       youtubeId: "IObybxqi0zs", // EDIT: Add your YouTube video ID here
       title: "Project Title 3",
@@ -72,7 +70,6 @@ const Portfolio = () => {
     {
       id: 4,
       category: "long-form",
-      service: "Long Form Video",
       mediaType: "youtube",
       youtubeId: "uz6purXLVnU", // EDIT: Add your YouTube video ID here
       title: "Project Title 4",
@@ -82,7 +79,6 @@ const Portfolio = () => {
     {
       id: 5,
       category: "long-form",
-      service: "Long Form Video",
       mediaType: "youtube",
       youtubeId: "9C6yastA1qA", // EDIT: Add your YouTube video ID here
       title: "Project Title 5",
@@ -92,7 +88,6 @@ const Portfolio = () => {
     {
       id: 6,
       category: "long-form",
-      service: "Long Form Video",
       mediaType: "youtube",
       youtubeId: "M7lc1UVf-VE", // EDIT: Add your YouTube video ID here
       title: "Project Title 6",
@@ -384,11 +379,7 @@ const Portfolio = () => {
                   )}
 
                   {/* Service Type Badge */}
-                  <div className="absolute top-4 left-4 z-10">
-                    <div className={`px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-sm bg-gradient-to-r ${getServiceColor(item.category)} text-white shadow-lg`}>
-                      {item.service}
-                    </div>
-                  </div>
+                  
 
                   {/* Duration Badge (for videos) */}
                   {item.duration && (
@@ -568,6 +559,7 @@ const Portfolio = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      <Footer />
     </div>
   );
 };

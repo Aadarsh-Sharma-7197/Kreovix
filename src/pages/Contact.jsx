@@ -20,6 +20,7 @@ import {
   Copy,
   ExternalLink
 } from 'lucide-react';
+import Footer from '../components/Footer';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -644,6 +645,7 @@ ${formData.name}`;
           </div>
         </div>
       </section>
+      <Footer/>
     </div>
   );
 };

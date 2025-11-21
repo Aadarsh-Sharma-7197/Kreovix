@@ -21,6 +21,7 @@ import {
   MousePointer,
   Sparkles,
 } from 'lucide-react';
+import Footer from '../components/Footer';
 
 const services = [
   {
@@ -578,6 +579,7 @@ const Services = () => {
           </div>
         </motion.div>
       </section>
+      <Footer/>
     </div>
   );
 };
