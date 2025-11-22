@@ -146,19 +146,19 @@ const services = [
     process: ["Concept", "Shoot", "Edit", "Deliver"]
   },
   {
-    id: 6,
-    icon: Code,
-    title: "Web Development",
-    shortDesc: "Professional imagery that showcases your brand's essence",
-    fullDesc: "Capture the perfect moment with our professional photography services. Whether it's product shots, corporate headshots, or event coverage, we deliver high-quality images that tell your story and showcase your brand in the best light.",
-    features: [
-      "Product Photography",
-      "Corporate Portraits", 
-      "Event Photography",
-      "Architectural Shots",
-      "Lifestyle Photography",
-      "Post-Processing"
-    ],
+  id: 6,
+  icon: Code,
+  title: "Web Development",
+  shortDesc: "Modern, fast, and responsive websites built to perform.",
+  fullDesc: "We develop high-performance websites tailored to your brand. With clean code, smooth UI/UX, and optimized functionality, we ensure your digital presence is powerful, scalable, and conversion-focused.",
+  features: [
+    "Responsive Web Design",
+    "Frontend Development", 
+    "Backend Development",
+    "API Integration",
+    "Database & Authentication",
+    "SEO Optimization"
+  ],
     packages: [
       { name: "Essential", price: "$159", period: "/session" },
       { name: "Professional", price: "$329", period: "/session" },

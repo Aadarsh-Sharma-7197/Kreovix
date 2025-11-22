@@ -365,37 +365,15 @@ const About = ({ setCursorVariant }) => {
                 }}
               >
                 <img
-                  src="https://via.placeholder.com/600x700/A259FF/FFFFFF?text=Our+Creative+Journey"
+                  src="public/story.jpg"
                   alt="Our Creative Journey"
                   className="w-full h-full object-cover"
                 />
 
                 {/* Floating Stats */}
-                <motion.div
-                  className="absolute top-8 right-8 glassmorphism p-4 rounded-2xl border border-white/20"
-                  animate={{
-                    scale: [1, 1.05, 1],
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                >
-                  <div className="text-center">
-                    <div className="text-2xl font-bold gradient-text">5+</div>
-                    <div className="text-xs text-gray-400">Years</div>
-                  </div>
-                </motion.div>
+               
 
-                <motion.div
-                  className="absolute bottom-8 left-8 glassmorphism p-4 rounded-2xl border border-white/20"
-                  animate={{
-                    scale: [1, 1.05, 1],
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-                >
-                  <div className="text-center">
-                    <div className="text-2xl font-bold gradient-text">500M+</div>
-                    <div className="text-xs text-gray-400">Views Generated</div>
-                  </div>
-                </motion.div>
+                
               </motion.div>
 
               {/* Background Glow */}
