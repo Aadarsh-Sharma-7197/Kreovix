@@ -40,13 +40,13 @@ const services = [
       "Brand Voice Development"
     ],
     packages: [
-      { name: "Starter", price: "$49", period: "/month" },
-      { name: "Professional", price: "$199", period: "/month" },
-      { name: "Enterprise", price: "$399", period: "/month" }
+      { name: "Starter", price: "₹15,000", period: "/month" },
+      { name: "Professional", price: "₹30,000", period: "/month" },
+      { name: "Enterprise", price: "₹50,000+", period: "/month" }
     ],
     stats: { projects: "70+", satisfaction: "98%", growth: "150%" },
-    color: "from-neonPurple to-pink-500",
-    gradient: "from-purple-900/20 to-pink-900/20",
+    color: "from-purple-600 to-pink-500",
+    gradient: "from-purple-900/40 to-pink-900/40",
     process: ["Strategy", "Content Creation", "Publishing", "Analytics"]
   },
   {
@@ -64,13 +64,13 @@ const services = [
       "UI/UX Design"
     ],
     packages: [
-      { name: "Basic", price: "$99", period: "/project" },
-      { name: "Premium", price: "$199", period: "/project" },
-      { name: "Complete", price: "$299", period: "/project" }
+      { name: "Basic", price: "₹5,000", period: "/project" },
+      { name: "Premium", price: "₹12,000", period: "/project" },
+      { name: "Complete", price: "₹25,000", period: "/project" }
     ],
     stats: { projects: "100+", satisfaction: "99%", growth: "200%" },
-    color: "from-neonTeal to-blue-500",
-    gradient: "from-teal-900/20 to-blue-900/20",
+    color: "from-pink-500 to-rose-400",
+    gradient: "from-pink-900/40 to-rose-900/40",
     process: ["Discovery", "Concept", "Design", "Refinement"]
   },
   {
@@ -88,13 +88,13 @@ const services = [
       "Format Optimization"
     ],
     packages: [
-      { name: "Quick Edit", price: "$79", period: "/video" },
-      { name: "Pro Edit", price: "$149", period: "/video" },
-      { name: "Cinematic", price: "$299", period: "/video" }
+      { name: "Quick Edit", price: "₹3,000", period: "/video" },
+      { name: "Pro Edit", price: "₹8,000", period: "/video" },
+      { name: "Cinematic", price: "₹15,000", period: "/video" }
     ],
     stats: { projects: "500+", satisfaction: "97%", growth: "180%" },
-    color: "from-purple-500 to-neonPurple",
-    gradient: "from-purple-900/20 to-indigo-900/20",
+    color: "from-violet-600 to-indigo-500",
+    gradient: "from-violet-900/40 to-indigo-900/40",
     process: ["Review", "Edit", "Effects", "Delivery"]
   },
   {
@@ -112,13 +112,13 @@ const services = [
       "Live Streaming"
     ],
     packages: [
-      { name: "Half Day", price: "$299", period: "/shoot" },
-      { name: "Full Day", price: "$699", period: "/shoot" },
-      { name: "Production", price: "$999", period: "/shoot" }
+      { name: "Half Day", price: "₹15,000", period: "/shoot" },
+      { name: "Full Day", price: "₹25,000", period: "/shoot" },
+      { name: "Production", price: "₹45,000+", period: "/shoot" }
     ],
     stats: { projects: "150+", satisfaction: "100%", growth: "220%" },
-    color: "from-teal-500 to-neonTeal", 
-    gradient: "from-teal-900/20 to-cyan-900/20",
+    color: "from-cyan-500 to-blue-500", 
+    gradient: "from-cyan-900/40 to-blue-900/40",
     process: ["Planning", "Shooting", "Editing", "Delivery"]
   },
   {
@@ -136,13 +136,13 @@ const services = [
       "Post-Processing"
     ],
     packages: [
-      { name: "Essential", price: "$69", period: "/session" },
-      { name: "Professional", price: "$129", period: "/session" },
-      { name: "Premium", price: "$299", period: "/session" }
+      { name: "Essential", price: "₹8,000", period: "/session" },
+      { name: "Professional", price: "₹15,000", period: "/session" },
+      { name: "Premium", price: "₹25,000", period: "/session" }
     ],
     stats: { projects: "300+", satisfaction: "99%", growth: "190%" },
-    color: "from-purple to-cyan-600",
-    gradient: "from-purple-900/20 to-cyan-900/20",
+    color: "from-emerald-400 to-teal-500",
+    gradient: "from-emerald-900/40 to-teal-900/40",
     process: ["Concept", "Shoot", "Edit", "Deliver"]
   },
   {
@@ -160,14 +160,14 @@ const services = [
     "SEO Optimization"
   ],
     packages: [
-      { name: "Essential", price: "$159", period: "/session" },
-      { name: "Professional", price: "$329", period: "/session" },
-      { name: "Premium", price: "$479", period: "/session" }
+      { name: "Essential", price: "₹20,000", period: "/project" },
+      { name: "Professional", price: "₹45,000", period: "/project" },
+      { name: "Premium", price: "₹80,000+", period: "/project" }
     ],
     stats: { projects: "50+", satisfaction: "99%", growth: "190%" },
-    color: "from-purple to-green-400",
-    gradient: "from-purple-900/20 to-green-900/20",
-    process: ["Concept", "Shoot", "Edit", "Deliver"]
+    color: "from-blue-600 to-cyan-400",
+    gradient: "from-blue-900/40 to-cyan-900/40",
+    process: ["Concept", "Design", "Develop", "Launch"]
   }
 ];
 
@@ -183,28 +183,26 @@ const Services = () => {
     <div className="pt-24 pb-16">
       {/* Hero Section */}
       <section ref={heroRef} className="max-w-7xl mx-auto px-6 mb-20 relative overflow-hidden">
-        {/* Floating Elements */}
-        {[...Array(6)].map((_, i) => (
+        {/* Floating Elements - Minimal */}
+        {[...Array(3)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute opacity-20"
+            className="absolute opacity-10"
             initial={{ 
-              x: Math.random() * 1200,
-              y: Math.random() * 600,
-              rotate: 0,
+              x: Math.random() * 1000,
+              y: Math.random() * 500,
             }}
             animate={{
-              x: Math.random() * 1200,
-              y: Math.random() * 600,
-              rotate: 360,
+              y: [0, -20, 0],
+              opacity: [0.1, 0.2, 0.1],
             }}
             transition={{
-              duration: 20 + i * 3,
+              duration: 10 + i * 5,
               repeat: Infinity,
-              ease: "linear"
+              ease: "easeInOut"
             }}
           >
-            <div className={`w-${8 + i * 4} h-${8 + i * 4} border-2 border-neonPurple/30 rounded-full`} />
+            <div className={`w-${16 + i * 8} h-${16 + i * 8} bg-gradient-to-tr from-neonPurple/20 to-transparent rounded-full blur-2xl`} />
           </motion.div>
         ))}
 
@@ -279,8 +277,8 @@ const Services = () => {
               {/* Header */}
               <div className="flex items-center gap-4 mb-6">
                 <motion.div
-                  whileHover={{ rotate: 360, scale: 1.1 }}
-                  transition={{ duration: 0.5 }}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
                   className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${selectedService.color} flex items-center justify-center shadow-lg`}
                 >
                   <selectedService.icon size={40} className="text-white" />
@@ -452,10 +450,10 @@ const Services = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ y: -10, scale: 1.02 }}
               onClick={() => setSelectedService(service)}
-              className={`group cursor-pointer glassmorphism p-8 rounded-2xl transition-all duration-500 ${
+              className={`group cursor-pointer glassmorphism p-8 rounded-2xl transition-all duration-500 relative overflow-hidden ${
                 selectedService.id === service.id 
-                  ? `border-2 bg-gradient-to-br ${service.gradient}` 
-                  : 'border border-white/10 hover:border-neonPurple/30'
+                  ? `border-2 bg-gradient-to-br ${service.gradient} border-${service.color.split(' ')[1].replace('to-', '')}` 
+                  : `border border-white/10 hover:border-${service.color.split(' ')[1].replace('to-', '')}/50`
               }`}
             >
               {/* Service Header */}
@@ -520,7 +518,7 @@ const Services = () => {
               </motion.button>
 
               {/* Hover Glow Effect */}
-              <div className={`absolute -inset-1 bg-gradient-to-r ${service.color} rounded-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-500 blur-xl -z-10`} />
+              <div className={`absolute -inset-1 bg-gradient-to-r ${service.color} rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-xl -z-10`} />
             </motion.div>
           ))}
         </div>

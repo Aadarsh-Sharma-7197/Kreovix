@@ -18,6 +18,10 @@ import {
 } from 'lucide-react';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
+import amitImg from "../assets/amit.jpg";
+import aadarshImg from "../assets/aadarsh.jpg";
+import abhilashaImg from "../assets/abhilasha.jpg";
+import storyImg from "../assets/story.jpg";
 
 const About = ({ setCursorVariant }) => {
   const [activeValue, setActiveValue] = useState(0);
@@ -81,26 +85,28 @@ const About = ({ setCursorVariant }) => {
     return () => clearInterval(interval);
   }, [values.length]);
 
+
+
   // Team members
   const team = [
     {
       name: "Amit Kumar Yadav",
       role: "Creative Director & Founder",
-      image: "https://via.placeholder.com/300x400/A259FF/FFFFFF?text=Alex+R",
+      image: amitImg,
       bio: "Visionary leader with 10+ years in creative direction and brand strategy.",
       skills: ["Creative Direction", "Brand Strategy", "Leadership"]
     },
     {
       name: "Aadarsh Sharma",
       role: "Developer",
-      image: "https://via.placeholder.com/300x400/00F5D4/FFFFFF?text=Sarah+C",
+      image: aadarshImg,
       bio: "Developer focused on creating efficient and user friendly web solutions.",
       skills: ["Full Stack"]
     },
     {
       name: "Abhilasha Sharma",
       role: "Developer",
-      image: "https://via.placeholder.com/300x400/FF6B6B/FFFFFF?text=Marcus+J",
+      image: abhilashaImg,
       bio: "Developer who loves building smooth, modern, and user focused web expriences.",
       skills: ["Frontend"]
     },
@@ -246,29 +252,28 @@ const About = ({ setCursorVariant }) => {
             </motion.p>
           </motion.div>
 
-          {/* Floating Elements */}
+          {/* Floating Elements - Minimal */}
           <div className="absolute inset-0 pointer-events-none">
             {[Camera, Video, Palette, Edit3].map((Icon, index) => (
               <motion.div
                 key={index}
-                className="absolute opacity-10"
+                className="absolute opacity-5"
                 style={{
                   left: `${20 + index * 20}%`,
                   top: `${30 + index * 15}%`,
                 }}
                 animate={{
-                  y: [0, -30, 0],
-                  rotate: [0, 180, 360],
-                  scale: [0.8, 1.2, 0.8],
+                  y: [-10, 10, -10],
+                  rotate: [0, 5, -5, 0],
                 }}
                 transition={{
-                  duration: 8 + index * 2,
+                  duration: 6 + index * 2,
                   repeat: Infinity,
                   delay: index * 1,
                   ease: "easeInOut"
                 }}
               >
-                <Icon size={60} className="text-neonPurple" />
+                <Icon size={48} className="text-white" />
               </motion.div>
             ))}
           </div>
@@ -365,7 +370,7 @@ const About = ({ setCursorVariant }) => {
                 }}
               >
                 <img
-                  src="public/story.jpg"
+                  src={storyImg}
                   alt="Our Creative Journey"
                   className="w-full h-full object-cover"
                 />
@@ -548,15 +553,8 @@ const About = ({ setCursorVariant }) => {
               >
                 <motion.div
                   className={`w-16 h-16 mx-auto mb-4 bg-gradient-to-r ${stat.color} rounded-2xl flex items-center justify-center`}
-                  animate={{
-                    rotate: [0, 360],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    delay: index * 0.5
-                  }}
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
                 >
                   <stat.icon size={28} className="text-white" />
                 </motion.div>

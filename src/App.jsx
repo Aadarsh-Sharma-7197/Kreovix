@@ -5,6 +5,7 @@ import { AnimatePresence } from 'framer-motion';
 // Components
 import LoadingScreen from './components/LoadingScreen';
 import Navbar from './components/Navbar';
+import CustomCursor from './components/CustomCursor';
 
 // Pages
 import Home from './pages/Home';
@@ -24,8 +25,34 @@ const ScrollToTop = () => {
   return null;
 };
 
+import Lenis from 'lenis';
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+      mouseMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   const handleLoadingComplete = useCallback(() => {
     // Ensure loading screen lasts at least 800ms
@@ -34,6 +61,7 @@ function App() {
 
   return (
     <div className="bg-background text-white min-h-screen overflow-x-hidden">
+      <CustomCursor />
       <Router>
         <Navbar />
           <ScrollToTop />

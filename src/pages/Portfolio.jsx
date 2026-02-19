@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import Footer from '../components/Footer';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Grid3X3,
   Film,
@@ -14,18 +14,30 @@ import {
   Sparkles
 } from 'lucide-react';
 
+// Imports
+import ph1 from "../assets/ph-1.jpg";
+import ph2 from "../assets/ph-2.JPG";
+import ph3 from "../assets/ph-3.jpg";
+import ph4 from "../assets/ph-4.JPG";
+import ph5 from "../assets/ph-5.jpg";
+import ph6 from "../assets/ph-6.JPG";
+
+import gd1 from "../assets/gd-1.png";
+import gd2 from "../assets/gd-2.png";
+import gd3 from "../assets/gd-3.png";
+import gd4 from "../assets/gd-4.png";
+
+import mg1 from "../assets/mg-1.jpg";
+import mg2 from "../assets/mg-2.jpg";
+import mg3 from "../assets/mg-3.jpg";
+import mg4 from "../assets/mg-4.jpg";
+
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [selectedMedia, setSelectedMedia] = useState(null);
-  
   const portfolioRef = useRef(null);
-  const isInView = useInView(portfolioRef, { once: true, margin: '-100px' });
 
-  // Define neon colors
-  const neonPurple = '#A259FF';
-  const neonTeal = '#00F5D4';
-
-  // Filter categories
+  // Define filter categories
   const filters = [
     { id: 'all', label: 'All Work', icon: Grid3X3 },
     { id: 'shorts', label: 'Shorts', icon: Film },
@@ -37,287 +49,159 @@ const Portfolio = () => {
   ];
 
   // Portfolio data
-  const portfolioData = {
+  const portfolioData = useMemo(() => ({
     shorts: [
-      { id: 's1', youtubeId: '_J8eCsRXvcI', thumbnail: 'https://img.youtube.com/vi/_J8eCsRXvcI/maxresdefault.jpg' },
-      { id: 's2', youtubeId: '7ldCgaTFgiM', thumbnail: 'https://img.youtube.com/vi/7ldCgaTFgiM/maxresdefault.jpg' },
-      { id: 's3', youtubeId: 'IObybxqi0zs', thumbnail: 'https://img.youtube.com/vi/IObybxqi0zs/maxresdefault.jpg' },
-      { id: 's4', youtubeId: 'VkFnmTwqSuE', thumbnail: 'https://img.youtube.com/vi/VkFnmTwqSuE/maxresdefault.jpg' },
-      { id: 's5', youtubeId: 'd0UgUMYJ49w', thumbnail: 'https://img.youtube.com/vi/d0UgUMYJ49w/maxresdefault.jpg' }
+      { id: 's1', youtubeId: '_J8eCsRXvcI', thumbnail: 'https://img.youtube.com/vi/_J8eCsRXvcI/mqdefault.jpg' }, // Optimized thumbnail
+      { id: 's2', youtubeId: '7ldCgaTFgiM', thumbnail: 'https://img.youtube.com/vi/7ldCgaTFgiM/mqdefault.jpg' },
+      { id: 's3', youtubeId: 'IObybxqi0zs', thumbnail: 'https://img.youtube.com/vi/IObybxqi0zs/mqdefault.jpg' },
+      { id: 's4', youtubeId: 'VkFnmTwqSuE', thumbnail: 'https://img.youtube.com/vi/VkFnmTwqSuE/mqdefault.jpg' },
+      { id: 's5', youtubeId: 'd0UgUMYJ49w', thumbnail: 'https://img.youtube.com/vi/d0UgUMYJ49w/mqdefault.jpg' }
     ],
     videos: [
-      { id: 'v1', youtubeId: 'uz6purXLVnU', thumbnail: 'https://img.youtube.com/vi/uz6purXLVnU/maxresdefault.jpg' },
-      { id: 'v2', youtubeId: '9C6yastA1qA', thumbnail: 'https://img.youtube.com/vi/9C6yastA1qA/maxresdefault.jpg' },
-      { id: 'v3', youtubeId: 'HsySiWymOEw', thumbnail: 'https://img.youtube.com/vi/HsySiWymOEw/maxresdefault.jpg' },
-      { id: 'v4', youtubeId: 'UvIHzsadU6Q', thumbnail: 'https://img.youtube.com/vi/UvIHzsadU6Q/maxresdefault.jpg' }
+      { id: 'v1', youtubeId: 'uz6purXLVnU', thumbnail: 'https://img.youtube.com/vi/uz6purXLVnU/mqdefault.jpg' },
+      { id: 'v2', youtubeId: '9C6yastA1qA', thumbnail: 'https://img.youtube.com/vi/9C6yastA1qA/mqdefault.jpg' },
+      { id: 'v3', youtubeId: 'HsySiWymOEw', thumbnail: 'https://img.youtube.com/vi/HsySiWymOEw/mqdefault.jpg' },
+      { id: 'v4', youtubeId: 'UvIHzsadU6Q', thumbnail: 'https://img.youtube.com/vi/UvIHzsadU6Q/mqdefault.jpg' }
     ],
     photography: [
-      { id: 'p1', path: 'public/ph-1.jpg' },
-      { id: 'p2', path: 'public/ph-2.jpg' },
-      { id: 'p3', path: 'public/ph-3.jpg' },
-      { id: 'p4', path: 'public/ph-4.jpg' },
-      { id: 'p5', path: 'public/ph-5.jpg' },
-      { id: 'p6', path: 'public/ph-6.jpg' }
+      { id: 'p1', path: ph1 },
+      { id: 'p2', path: ph2 },
+      { id: 'p3', path: ph3 },
+      { id: 'p4', path: ph4 },
+      { id: 'p5', path: ph5 },
+      { id: 'p6', path: ph6 }
     ],
     design: [
-      { id: 'd1', path: 'public/gd-1.png' },
-      { id: 'd2', path: 'public/gd-2.png' },
-      { id: 'd3', path: 'public/gd-3.png' },
-      { id: 'd4', path: 'public/gd-4.png' }
+      { id: 'd1', path: gd1 },
+      { id: 'd2', path: gd2 },
+      { id: 'd3', path: gd3 },
+      { id: 'd4', path: gd4 }
     ],
     motion: [
-      { id: 'm1', path: 'public/mg-1.jpg' },
-      { id: 'm2', path: 'public/mg-2.jpg' },
-      { id: 'm3', path: 'public/mg-3.jpg' },
-      { id: 'm4', path: 'public/mg-4.jpg' }
+      { id: 'm1', path: mg1 },
+      { id: 'm2', path: mg2 },
+      { id: 'm3', path: mg3 },
+      { id: 'm4', path: mg4 }
     ],
     social: [
       { id: 'so1', path: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80' },
       { id: 'so2', path: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&q=80' },
       { id: 'so3', path: 'https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=800&q=80' }
     ]
-  };
+  }), []);
 
-  // Glassmorphism style
-  const glassStyle = "bg-white/5 backdrop-blur-xl border border-white/10";
-
-  // Section component
-  const PortfolioSection = ({ title, items, type, icon: Icon }) => {
-    const isShort = type === 'shorts';
-    const isVideo = type === 'videos';
-    
-    return (
-      <motion.section
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="mb-16 md:mb-24"
-      >
-        {/* Section Header */}
-        <div className="flex items-center gap-4 mb-8">
-          <motion.div 
-            className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#A259FF] to-[#00F5D4] flex items-center justify-center shadow-lg shadow-[#A259FF]/30"
-            whileHover={{ scale: 1.1, rotate: 5 }}
-          >
-            <Icon size={24} className="text-white" />
-          </motion.div>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-[#A259FF] via-white to-[#00F5D4] bg-clip-text text-transparent">
-            {title}
-          </h2>
-          <div className="flex-1 h-px bg-gradient-to-r from-[#A259FF]/30 via-[#00F5D4]/30 to-transparent" />
-        </div>
-
-        {/* Grid Layout */}
-        <div className={`grid gap-4 md:gap-5 ${
-          isShort 
-            ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5' 
-            : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
-        }`}>
-          {items.map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              whileHover={{ scale: 1.05, y: -8 }}
-              className={`group relative ${glassStyle} rounded-2xl overflow-hidden hover:border-[#A259FF]/50 transition-all duration-500 cursor-pointer ${
-                isShort ? 'aspect-[9/16]' : 'aspect-video'
-              }`}
-              onClick={() => setSelectedMedia({ ...item, type })}
-              style={{
-                boxShadow: '0 0 0 0 rgba(162, 89, 255, 0)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = '0 0 30px 0 rgba(162, 89, 255, 0.4)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = '0 0 0 0 rgba(162, 89, 255, 0)';
-              }}
-            >
-              {/* Media */}
-              <img
-                src={item.thumbnail || item.path}
-                alt=""
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                {(isVideo || isShort) && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div 
-                      className="w-16 h-16 rounded-full bg-gradient-to-r from-[#A259FF] to-[#00F5D4] flex items-center justify-center shadow-2xl"
-                      whileHover={{ scale: 1.15 }}
-                      style={{
-                        boxShadow: '0 0 40px rgba(162, 89, 255, 0.6)'
-                      }}
-                    >
-                      <Play size={24} className="text-white ml-1" fill="white" />
-                    </motion.div>
-                  </div>
-                )}
-              </div>
-
-              {/* Type Badge */}
-              
-
-              {/* Glow effect on hover */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#A259FF]/20 to-[#00F5D4]/20" />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.section>
-    );
-  };
-
-  // Filter sections based on active filter
-  const shouldShowSection = (sectionId) => {
-    return activeFilter === 'all' || activeFilter === sectionId;
-  };
+  // Helper to get all items for "All" view
+  const filteredItems = useMemo(() => {
+    if (activeFilter === 'all') {
+      const allItems = [];
+      Object.entries(portfolioData).forEach(([type, items]) => {
+        items.forEach(item => allItems.push({ ...item, type }));
+      });
+      return allItems;
+    }
+    return portfolioData[activeFilter].map(item => ({ ...item, type: activeFilter }));
+  }, [activeFilter, portfolioData]);
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] relative overflow-hidden">
-      {/* Animated Background Effects */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#A259FF]/10 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#00F5D4]/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-[#A259FF]/5 to-[#00F5D4]/5 rounded-full blur-[150px]" />
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Background Effects - Simplified for Performance */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neonPurple/5 rounded-full blur-[100px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neonTeal/5 rounded-full blur-[100px]" />
       </div>
 
       {/* Hero Section */}
-      <section className="pt-24 md:pt-32 pb-12 md:pb-16 px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="pt-32 pb-12 relative z-10 px-6">
         <div className="max-w-7xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
           >
-            {/* Badge */}
             <motion.div
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#A259FF]/10 to-[#00F5D4]/10 border border-[#A259FF]/30 backdrop-blur-xl mb-8"
-              animate={{
-                boxShadow: [
-                  '0 0 20px rgba(162, 89, 255, 0.2)',
-                  '0 0 40px rgba(162, 89, 255, 0.4)',
-                  '0 0 20px rgba(162, 89, 255, 0.2)'
-                ]
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full glassmorphism border border-white/10 mb-6"
             >
-              <Sparkles size={18} className="text-[#00F5D4]" />
-              <span className="text-sm font-semibold text-white">Portfolio Showcase</span>
+              <Sparkles size={16} className="text-neonTeal" />
+              <span className="text-sm font-medium text-white tracking-wide">PORTFOLIO SHOWCASE</span>
             </motion.div>
             
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-white via-white to-white bg-clip-text text-transparent">Our </span>
-              <span className="bg-gradient-to-r from-[#A259FF] via-[#00F5D4] to-[#A259FF] bg-clip-text text-transparent animate-gradient">
-                Creative Work
-              </span>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+              <span className="text-white">Our </span>
+              <span className="gradient-text">Masterpieces</span>
             </h1>
             
-            <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12">
-              Explore our diverse portfolio of <span className="text-[#00F5D4] font-semibold">visual storytelling</span>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+              A curated collection of our finest work, pushing the boundaries of <span className="text-neonTeal">creativity</span> and <span className="text-neonPurple">innovation</span>.
             </p>
           </motion.div>
 
           {/* Filter Bar */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className={`inline-flex flex-wrap items-center justify-center gap-2 p-2 ${glassStyle} rounded-2xl shadow-2xl`}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="flex flex-wrap items-center justify-center gap-2"
           >
             {filters.map((filter) => (
-              <motion.button
+              <button
                 key={filter.id}
                 onClick={() => setActiveFilter(filter.id)}
-                className={`flex items-center gap-2 px-4 md:px-5 py-2.5 md:py-3 rounded-xl font-semibold text-lg transition-all duration-300 ${
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                   activeFilter === filter.id
-                    ? 'bg-gradient-to-r from-purple to-cyan-400 text-white shadow-lg'
-                    : 'text-gray-300 hover:text-white hover:bg-white/5'
+                    ? 'bg-gradient-to-r from-neonPurple to-neonTeal text-white shadow-lg shadow-neonPurple/20'
+                    : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
                 }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                style={
-                  activeFilter === filter.id
-                    ? { boxShadow: '0 0 20px rgba(162, 89, 255, 0.5)' }
-                    : {}
-                }
               >
                 <filter.icon size={16} />
                 <span>{filter.label}</span>
-              </motion.button>
+              </button>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Portfolio Content */}
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pb-20 relative z-10" ref={portfolioRef}>
-        {/* Shorts Section */}
-        {shouldShowSection('shorts') && (
-          <PortfolioSection 
-            title="Short Form Videos" 
-            items={portfolioData.shorts} 
-            type="shorts"
-            icon={Film}
-          />
-        )}
-
-        {/* Videos Section */}
-        {shouldShowSection('videos') && (
-          <PortfolioSection 
-            title="Long Form Videos" 
-            items={portfolioData.videos} 
-            type="videos"
-            icon={Video}
-          />
-        )}
-
-        {/* Photography Section */}
-        {shouldShowSection('photography') && (
-          <PortfolioSection 
-            title="Photography" 
-            items={portfolioData.photography} 
-            type="photography"
-            icon={Camera}
-          />
-        )}
-
-        {/* Design Section */}
-        {shouldShowSection('design') && (
-          <PortfolioSection 
-            title="Graphic Design" 
-            items={portfolioData.design} 
-            type="design"
-            icon={Palette}
-          />
-        )}
-
-        {/* Motion Graphics Section */}
-        {shouldShowSection('motion') && (
-          <PortfolioSection 
-            title="Motion Graphics" 
-            items={portfolioData.motion} 
-            type="motion"
-            icon={Edit3}
-          />
-        )}
-
-        {/* Social Media Section */}
-        {shouldShowSection('social') && (
-          <PortfolioSection 
-            title="Social Media Content" 
-            items={portfolioData.social} 
-            type="social"
-            icon={Share2}
-          />
-        )}
-      </div>
+      {/* Masonry Grid - High Performance */}
+      <section className="max-w-[1800px] mx-auto px-6 pb-24 relative z-10" ref={portfolioRef}>
+        <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
+          <AnimatePresence mode="popLayout">
+            {filteredItems.map((item) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="break-inside-avoid relative group rounded-xl overflow-hidden bg-white/5 border border-white/10 cursor-pointer will-change-transform"
+                onClick={() => setSelectedMedia(item)}
+              >
+                {/* Image/Thumbnail */}
+                <div className="relative w-full bg-white/5">
+                  <img
+                    src={item.thumbnail || item.path}
+                    alt=""
+                    className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  
+                  {/* Overlay - Simplified */}
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                    {(item.youtubeId || item.type === 'videos' || item.type === 'shorts') ? (
+                      <div className="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center border border-white/30 backdrop-blur-sm">
+                        <Play size={24} className="text-white fill-current ml-1" />
+                      </div>
+                    ) : (
+                      <div className="px-4 py-2 bg-black/60 rounded-full text-sm font-medium text-white border border-white/20">
+                        View
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+      </section>
 
       {/* Lightbox Modal */}
       <AnimatePresence>
@@ -326,42 +210,28 @@ const Portfolio = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/95 backdrop-blur-2xl z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/95 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
             onClick={() => setSelectedMedia(null)}
           >
-            <motion.button
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
+            <button
               onClick={() => setSelectedMedia(null)}
-              className={`absolute top-6 right-6 w-12 h-12 rounded-full ${glassStyle} flex items-center justify-center text-white hover:bg-white/10 transition-all z-10 shadow-lg`}
-              whileHover={{ scale: 1.1, rotate: 90 }}
-              whileTap={{ scale: 0.9 }}
-              style={{ boxShadow: '0 0 20px rgba(0, 245, 212, 0.3)' }}
+              className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all z-50 focus:outline-none"
             >
-              <X size={24} />
-            </motion.button>
+              <X size={20} />
+            </button>
 
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className={`relative ${
-                selectedMedia.type === 'shorts' 
-                  ? 'w-full max-w-md aspect-[9/16]' 
-                  : 'w-full max-w-6xl aspect-video'
+              layoutId={selectedMedia.id}
+              className={`relative w-full max-h-[90vh] ${
+                selectedMedia.type === 'shorts' ? 'max-w-md aspect-[9/16]' : 'max-w-6xl aspect-video'
               }`}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className={`w-full h-full rounded-2xl overflow-hidden bg-black shadow-2xl border border-[#A259FF]/30`}
-                style={{ boxShadow: '0 0 50px rgba(162, 89, 255, 0.4)' }}
-              >
+              <div className="w-full h-full rounded-xl overflow-hidden bg-black shadow-2xl border border-white/10">
                 {selectedMedia.youtubeId ? (
                   <iframe
-                    src={`https://www.youtube.com/embed/${selectedMedia.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
+                    src={`https://www.youtube.com/embed/${selectedMedia.youtubeId}?autoplay=1&rel=0`}
                     className="w-full h-full"
-                    frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   />
@@ -377,17 +247,6 @@ const Portfolio = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
-      <style jsx>{`
-        @keyframes gradient {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-        .animate-gradient {
-          background-size: 200% 200%;
-          animation: gradient 3s ease infinite;
-        }
-      `}</style>
       <Footer/>
     </div>
   );

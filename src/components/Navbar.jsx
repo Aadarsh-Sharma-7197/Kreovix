@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -43,7 +44,7 @@ const Navbar = () => {
           {/* LOGO */}
           <Link to="/" className="flex items-center gap-2 outline-none focus:outline-none">
             <motion.img
-              src="/logo.png"
+              src={logo}
               alt="Kreovix Logo"
               className="h-[40px] w-auto opacity-90 hover:opacity-100 transition"
               style={{
@@ -57,6 +58,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => {
               const active = location.pathname === item.path;
+
 
               return (
                 <Link

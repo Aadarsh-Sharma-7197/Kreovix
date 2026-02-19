@@ -13,8 +13,17 @@ import {
 } from 'lucide-react';
 
 /* -------------------------------------------------------
+   ASSETS IMPORT
+------------------------------------------------------- */
+import img3 from "../assets/3.png";
+import img1 from "../assets/1.jpg";
+import devImg from "../assets/dev.jpg";
+import img6 from "../assets/6.jpg";
+import img5 from "../assets/5.jpg";
+import img4 from "../assets/4.jpg";
+
+/* -------------------------------------------------------
    SERVICES DATA
-   Add your media files to public/services/ folder
 ------------------------------------------------------- */
 const services = [
   {
@@ -25,7 +34,7 @@ const services = [
     color: "from-neonPurple to-pink-500",
     delay: 0.08,
     mediaType: "image",
-    mediaPath: "/3.png",
+    mediaPath: img3,
     serviceLink: "/services/social-media-marketing"
   },
   {
@@ -36,7 +45,7 @@ const services = [
     color: "from-neonTeal to-blue-500",
     delay: 0.12,
     mediaType: "image",
-    mediaPath: "/1.jpg",
+    mediaPath: img1,
     serviceLink: "/services/graphic-design"
   },
   {
@@ -47,7 +56,7 @@ const services = [
     color: "from-purple to-green-400",
     delay: 0.16,
     mediaType: "image",
-    mediaPath: "/dev.jpg",
+    mediaPath: devImg,
     serviceLink: "/services/web-development"
   },
   {
@@ -58,7 +67,7 @@ const services = [
     color: "from-purple-500 to-neonPurple",
     delay: 0.20,
     mediaType: "image",
-    mediaPath: "/6.jpg",
+    mediaPath: img6,
     serviceLink: "/services/video-editing"
   },
   {
@@ -69,7 +78,7 @@ const services = [
     color: "from-teal-500 to-neonTeal",
     delay: 0.24,
     mediaType: "image",
-    mediaPath: "/5.jpg",
+    mediaPath: img5,
     serviceLink: "/services/videography"
   },
   {
@@ -80,7 +89,7 @@ const services = [
     color: "from-purple to-cyan-600",
     delay: 0.28,
     mediaType: "image",
-    mediaPath: "/4.jpg",
+    mediaPath: img4,
     serviceLink: "/services/photography"
   }
 ];
@@ -110,7 +119,7 @@ const ServicesScroll = ({ setCursorVariant }) => {
       </motion.div>
 
       {/* Cards */}
-      <div className="space-y-32">
+      <div className="space-y-16 md:space-y-32">
         {services.map((service, index) => (
           <ServiceCard
             key={service.title}

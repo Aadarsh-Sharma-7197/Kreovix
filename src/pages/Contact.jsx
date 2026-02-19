@@ -189,10 +189,10 @@ ${formData.name}`;
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] relative overflow-hidden">
-      {/* Background */}
+      {/* Background - Minimal */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#A259FF]/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/3 w-80 h-80 bg-[#00F5D4]/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#A259FF]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }} />
+        <div className="absolute bottom-1/4 right-1/3 w-80 h-80 bg-[#00F5D4]/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s', animationDuration: '5s' }} />
       </div>
 
       {/* Hero */}
@@ -282,7 +282,7 @@ ${formData.name}`;
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl px-4 py-3 md:py-4 text-white placeholder-gray-500 focus:border-[#00F5D4] focus:outline-none transition-all"
+                        className="w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-3 md:py-4 text-white placeholder-gray-500 focus:border-neonTeal focus:ring-2 focus:ring-neonTeal/20 focus:outline-none transition-all duration-300 hover:border-white/30"
                         placeholder="XYZ"
                       />
                     </div>
@@ -293,7 +293,7 @@ ${formData.name}`;
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl px-4 py-3 md:py-4 text-white placeholder-gray-500 focus:border-[#00F5D4] focus:outline-none transition-all"
+                        className="w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-3 md:py-4 text-white placeholder-gray-500 focus:border-neonTeal focus:ring-2 focus:ring-neonTeal/20 focus:outline-none transition-all duration-300 hover:border-white/30"
                         placeholder="xyz@example.com"
                       />
                     </div>
@@ -301,17 +301,22 @@ ${formData.name}`;
 
                   <div>
                     <label className="block text-white font-medium mb-3">Project Type *</label>
-                    <select
-                      name="projectType"
-                      value={formData.projectType}
-                      onChange={handleInputChange}
-                      className="w-full bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl px-4 py-3 md:py-4 text-white focus:border-[#00F5D4] focus:outline-none transition-all"
-                    >
-                      <option value="" className="bg-[#0A0A0A]">Select a service...</option>
-                      {projectTypes.map((type, i) => (
-                        <option key={i} value={type} className="bg-[#0A0A0A]">{type}</option>
-                      ))}
-                    </select>
+                    <div className="relative">
+                      <select
+                        name="projectType"
+                        value={formData.projectType}
+                        onChange={handleInputChange}
+                        className="w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-3 md:py-4 text-white focus:border-neonTeal focus:ring-2 focus:ring-neonTeal/20 focus:outline-none transition-all duration-300 hover:border-white/30 appearance-none cursor-pointer"
+                      >
+                        <option value="" className="bg-[#0A0A0A] text-gray-500">Select a service...</option>
+                        {projectTypes.map((type, i) => (
+                          <option key={i} value={type} className="bg-[#0A0A0A]">{type}</option>
+                        ))}
+                      </select>
+                      <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                      </div>
+                    </div>
                   </div>
 
                   <div>
@@ -321,7 +326,7 @@ ${formData.name}`;
                       value={formData.message}
                       onChange={handleInputChange}
                       rows={6}
-                      className="w-full bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl px-4 py-3 md:py-4 text-white placeholder-gray-500 focus:border-[#00F5D4] focus:outline-none transition-all resize-none"
+                      className="w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-3 md:py-4 text-white placeholder-gray-500 focus:border-neonTeal focus:ring-2 focus:ring-neonTeal/20 focus:outline-none transition-all duration-300 hover:border-white/30 resize-none"
                       placeholder="Tell us about your project..."
                     />
                   </div>
@@ -363,16 +368,17 @@ ${formData.name}`;
 
                   {statusMessage && (
                     <motion.div
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className={`p-4 rounded-xl flex items-center gap-3 ${
+                      exit={{ opacity: 0, y: -10 }}
+                      className={`p-4 rounded-xl flex items-center gap-3 border backdrop-blur-md shadow-lg ${
                         statusType === 'success'
-                          ? 'bg-green-500/20 border border-green-500/30 text-green-300'
-                          : 'bg-red-500/20 border border-red-500/30 text-red-300'
+                          ? 'bg-green-500/10 border-green-500/20 text-green-300'
+                          : 'bg-red-500/10 border-red-500/20 text-red-300'
                       }`}
                     >
-                      {statusType === 'success' ? <CheckCircle size={20} /> : <AlertCircle size={20} />}
-                      <span className="text-sm">{statusMessage}</span>
+                      {statusType === 'success' ? <CheckCircle size={20} className="text-green-400" /> : <AlertCircle size={20} className="text-red-400" />}
+                      <span className="font-medium">{statusMessage}</span>
                     </motion.div>
                   )}
                 </div>

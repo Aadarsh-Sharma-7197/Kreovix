@@ -24,6 +24,7 @@ import ServicesScroll from '../components/ServicesScroll';
 import Footer from '../components/Footer';
 import OptimizedBackground from '../components/OptimizedBackground';
 import { Link } from 'react-router-dom';
+import comp1Video from "../assets/Comp 1.mp4";
 
 const Home = () => {
   const [isMuted, setIsMuted] = useState(true);
@@ -105,38 +106,30 @@ const Home = () => {
         className="min-h-screen flex items-center justify-center relative overflow-hidden pt-10 pb-24 lg:pb-32"
       >
 
-        {/* Floating Icons */}
+        {/* Floating Icons - Simplifed */}
         <div className="absolute inset-0 pointer-events-none">
           {[
             { icon: Sparkles, delay: 0, x: '10%', y: '15%' },
-            { icon: Zap, delay: 0.8, x: '85%', y: '20%' },
-            { icon: Heart, delay: 1.6, x: '15%', y: '75%' },
-            { icon: Eye, delay: 2.4, x: '80%', y: '70%' },
-            { icon: MessageCircle, delay: 3.2, x: '50%', y: '10%' },
-            { icon: TrendingUp, delay: 4, x: '25%', y: '45%' },
-            { icon: Rocket, delay: 4.8, x: '70%', y: '40%' }
+            { icon: Zap, delay: 2, x: '85%', y: '20%' },
+            { icon: Rocket, delay: 4, x: '70%', y: '60%' }
           ].map((item, index) => (
             <motion.div
               key={index}
-              className="absolute opacity-10"
+              className="absolute opacity-5"
               style={{ left: item.x, top: item.y }}
-              initial={{ opacity: 0, scale: 0, filter: "blur(20px)" }}
               animate={{
-                opacity: [0.05, 0.2, 0.05],
-                scale: [0.5, 1.2, 0.8, 1],
-                rotate: [0, 360, 720],
-                filter: ["blur(20px)", "blur(0px)", "blur(5px)", "blur(0px)"],
-                y: [-20, 20, -10, 0],
-                x: [-10, 10, -5, 0]
+                y: [-20, 20, -20],
+                rotate: [0, 10, -10, 0],
+                opacity: [0.05, 0.1, 0.05],
               }}
               transition={{
-                duration: 12,
+                duration: 8,
                 delay: item.delay,
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
             >
-              <item.icon size={40} className="text-neonPurple" />
+              <item.icon size={32} className="text-white" />
             </motion.div>
           ))}
         </div>
@@ -242,11 +235,12 @@ const Home = () => {
             </Link>
 
             {/* SECONDARY CTA — Watch Reel */}
+            <Link to="/portfolio">
             <motion.button
               whileHover={{ scale: 1.02, y: -1 }}
               whileTap={{ scale: 0.97 }}
               className="
-                px-7 py-4 rounded-full
+              px-7 py-4 rounded-full
                 glassmorphism 
                 font-medium text-base 
                 text-gray-200 
@@ -259,6 +253,7 @@ const Home = () => {
               <Play size={18} className="text-neonTeal" />
               Watch Reel
             </motion.button>
+              </Link>
 
           </motion.div>
 
@@ -299,6 +294,7 @@ const Home = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, delay: 1 }}
               >
+
                 <video
                   ref={videoRef}
                   className="w-full h-full object-cover"
@@ -309,7 +305,7 @@ const Home = () => {
                   onLoadedData={handleVideoLoad}
                   poster="https://via.placeholder.com/800x450/A259FF/FFFFFF?text=Kreovix+Showreel"
                 >
-                  <source src="public/Comp 1.mp4" type="video/mp4" />
+                  <source src={comp1Video} type="video/mp4" />
                 </video>
 
                 {!isVideoLoaded && (
@@ -420,10 +416,11 @@ const Home = () => {
                   initial={{ scale: 0 }}
                   animate={isStatsInView ? { scale: 1 } : {}}
                   transition={{
-                    duration: 0.6,
+                    duration: 0.8,
                     delay: index * 0.1,
                     type: "spring",
-                    bounce: 0.4
+                    stiffness: 100,
+                    damping: 20
                   }}
                 >
                   {stat.number}
