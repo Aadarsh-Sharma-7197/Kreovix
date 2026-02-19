@@ -1,8 +1,6 @@
 # Kreovix - Digital Agency Portfolio
 
-![Kreovix Banner](https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop)
-
-**Kreovix** is a premium digital agency website built with modern web technologies. It features a stunning "Midnight" aesthetic, butter-smooth scrolling, and immersive animations to showcase creative services and portfolios.
+**Kreovix** is our take on a premium agency portfolio. We built it with React 19 and Tailwind v4 to feature a custom "Midnight" dark theme, zero-latency cursor, and momentum scrolling—stripping out the heavy animations to keep it buttery smooth and responsive.
 
 ## 🚀 Features
 
